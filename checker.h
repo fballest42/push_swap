@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/26 10:56:21 by fballest         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:08:23 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ typedef struct	s_chec
 	int					middle;
 	int					number;
 	char				**stack;
+	char				**info;
 	int					ya;
 	int					yb;
 }				t_chec;
 
-ft_getargv(t_chec *chec, char **argv);
+int		ft_getargv(t_chec *chec, char **argv);
+void	ft_checkall(t_chec *chec);
 
 #endif

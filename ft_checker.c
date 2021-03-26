@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/26 12:08:12 by fballest         ###   ########.fr       */
+/*   Updated: 2021/03/26 13:15:32 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@ int	ft_getargv(t_chec *chec, char **argv)
 	int		y;
 	char	*c = "ABCDE";
 
-	y = 0;
+	y = 1;
+	chec->info = ft_split(*argv, ' ');
 	while (y <= chec->number && argv[y][0])
 	{
 		if (ft_isdigit(ft_atoi(argv[y])))
 		{
-			chec->stack[0][y] = argv[y][y + 1];
-			chec->stack[1][y] = ' ';
-			printf("%c - %d - %d\n",c[y], chec->stack[0][y], chec->stack[1][y]);
+			chec->stack[y] = argv[y];
+			chec->stack[0] = " ";
+			printf("%c - %s - %s\n",c[y], chec->stack[0], chec->stack[1]);
 			y++;
 		}
 		else
@@ -36,20 +37,27 @@ int	ft_getargv(t_chec *chec, char **argv)
 	return (0);
 }
 
-void	ft_checkargv(t_chec *chec)
+void	ft_checkall(t_chec *chec)
 {
 	char	comp;
 
 	comp = chec->stack[1][0];
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_chec		*chec;
 
-	chec = NULL;
-	ft_bzero(chec, sizeof(t_chec));
-	chec->number = argc;
-	if (ft_getargv(chec, argv) == 0)
-		ft_checkargv(chec);
+	chec = malloc(sizeof(t_chec));
+	if (!chec)
+		return (-1);
+	if (argc > 1)
+	{
+		 chec->number = argc;
+		if (ft_getargv(chec, argv) == 0)
+			ft_checkall(chec);
+	}
+	else
+		printf("Error\n");
+	return (0);
 }
