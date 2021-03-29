@@ -26,17 +26,27 @@
 
 typedef struct	s_chec
 {
-	int					posmax;
-	int					posmin;
-	int					middle;
-	int					number;
-	char				**stack;
-	char				**info;
-	int					ya;
-	int					yb;
+	int			maxnum;
+	int			minnum;
+	int			midnum;
+	int			totnum;
+	int			totins;
+	int			totarg;
+	char		**temp;
+	int			tmp;
+	int			**staint;
+	char		**stastr;
+	char		**instru;
+	int			ya;
+	int			yb;
+	char		*error;
+	int			symbol;
+	char		symb;
 }				t_chec;
 
 int		ft_getargv(t_chec *chec, char **argv);
 void	ft_checkall(t_chec *chec);
+int		ft_printerror(char *str);
+void	ft_checknumbers(t_chec *chec, int x);
 
 #endif

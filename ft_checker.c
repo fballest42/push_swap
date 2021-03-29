@@ -12,27 +12,56 @@
 
 #include "checker.h"
 
-int	ft_getargv(t_chec *chec, char **argv)
+int	ft_printerror(char *str)
+{
+	printf("%s\n", str);
+	exit(-1);
+}
+
+void	ft_checknumbers(t_chec *chec, int z)
 {
 	int		y;
-	char	*c = "ABCDE";
 
-	y = 1;
-	chec->info = ft_split(*argv, ' ');
-	while (y <= chec->number && argv[y][0])
+	y = 0;
+	while (chec->temp[z][y])
 	{
-		if (ft_isdigit(ft_atoi(argv[y])))
-		{
-			chec->stack[y] = argv[y];
-			chec->stack[0] = " ";
-			printf("%c - %s - %s\n",c[y], chec->stack[0], chec->stack[1]);
+		if ((chec->temp[z][y] >= '0' && chec->temp[z][y] <= '9') ||
+			((chec->temp[z][0] == '-' || chec->temp[z][0] == '+') &&
+			(chec->temp[z][1] >= '0' && chec->temp[z][y] <= '9')))
 			y++;
-		}
 		else
-		{
-			printf("Error\n");
-			exit (-1);
-		}
+			ft_printerror("Error\n");
+	}
+}
+
+int	ft_getargv(t_chec *chec, char **argv)
+{
+	int		x;
+
+	x = 1;
+	chec->temp = malloc(sizeof(char *) * chec->totarg + 1);
+	chec->staint = malloc(sizeof(int *) * chec->totarg + 1);
+	if (!chec->temp || !chec->staint)
+		return(ft_printerror("Error\n"));
+	while (argv[x])
+	{
+		chec->temp[x - 1] = ft_strdup(argv[x]);
+		ft_checknumbers(chec, x - 1);
+		x++;
+	}
+	chec->temp[x] = NULL;
+	x = 0;
+	while (chec->temp[x])
+	{
+		chec->staint[x] = malloc(sizeof(int) * 3);
+		if (!chec->staint[x])
+			ft_printerror("Error\n");
+		ft_bzero(chec->staint[x], sizeof(int));
+		chec->staint[x][0] = ft_atoi(chec->temp[x]);
+		printf("%s ", chec->temp[x]);
+		printf("%d ", chec->staint[x][0]);
+		printf("%d\n", chec->staint[x][1]);
+		x++;
 	}
 	return (0);
 }
@@ -41,7 +70,8 @@ void	ft_checkall(t_chec *chec)
 {
 	char	comp;
 
-	comp = chec->stack[1][0];
+	comp = 'x';
+	chec->ya = 0;
 }
 
 int		main(int argc, char **argv)
@@ -49,15 +79,10 @@ int		main(int argc, char **argv)
 	t_chec		*chec;
 
 	chec = malloc(sizeof(t_chec));
-	if (!chec)
-		return (-1);
-	if (argc > 1)
-	{
-		 chec->number = argc;
-		if (ft_getargv(chec, argv) == 0)
-			ft_checkall(chec);
-	}
-	else
-		printf("Error\n");
+	if (!chec || argc <= 1)
+		return(ft_printerror("Error\n"));
+	chec->totarg = argc - 1;
+	if (ft_getargv(chec, argv) == 0)
+		ft_checkall(chec);
 	return (0);
 }
