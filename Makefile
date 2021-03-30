@@ -19,7 +19,7 @@ NAME = checker
 NAME2 = push_swap
 
 # SOURCES #
-SRC = ft_checker
+SRC = checker checker_2
 SRC2 = 
 
 SRCCHE = $(addsuffix .c, $(SRC))

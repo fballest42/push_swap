@@ -31,7 +31,7 @@ typedef struct	s_chec
 	int			midnum;
 	int			totnum;
 	int			totins;
-	int			totarg;
+	int			totnumb;
 	char		**temp;
 	int			tmp;
 	int			**staint;
@@ -48,10 +48,11 @@ int		ft_getargv(t_chec *chec, char **argv);
 void	ft_checkall(t_chec *chec);
 int		ft_printerror(char *str);
 void	ft_checknumbers(t_chec *chec, int x);
-void	ft_checkinst(t_chec *chec, char **line);
-void	ft_checkorder(t_chec *chec, char **line);
+void	ft_checkinst(t_chec *chec, char *line);
+void	ft_checkorder(t_chec *chec, char *line);
+void	ft_getcomands(t_chec *chec, char *line);
 
-void	ft_checkorder(t_chec *chec, char **line);
+void	ft_checkorder(t_chec *chec, char *line);
 void	ft_swapstack_a(t_chec *chec);
 void	ft_swapstack_b(t_chec *chec);
 void	ft_swapstack_ab(t_chec *chec);
@@ -63,6 +64,6 @@ void	ft_rotatestack_ab(t_chec *chec);
 void	ft_rotrevstack_a(t_chec *chec);
 void	ft_rotrevstack_b(t_chec *chec);
 void	ft_rotrevstack_ab(t_chec *chec);
-void	ft_checkinst(t_chec *chec, char **line);
+void	ft_checkinst(t_chec *chec, char *line);
 
 #endif

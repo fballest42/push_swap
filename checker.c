@@ -39,8 +39,8 @@ int	ft_getargv(t_chec *chec, char **argv)
 	int		x;
 
 	x = 1;
-	chec->temp = malloc(sizeof(char *) * chec->totarg + 1);
-	chec->staint = malloc(sizeof(int *) * chec->totarg + 1);
+	chec->temp = malloc(sizeof(char *) * chec->totnum + 1);
+	chec->staint = malloc(sizeof(int *) * chec->totnum + 1);
 	if (!chec->temp || !chec->staint)
 		return(ft_printerror("Error\n"));
 	while (argv[x])
@@ -63,15 +63,12 @@ int	ft_getargv(t_chec *chec, char **argv)
 	return (0);
 }
 
-void	ft_getcomands(t_chec *chec, char **line)
+void	ft_getcomands(t_chec *chec, char *line)
 {
-	int		fd;
-	char	*instr;
 	int		i;
 
-	fd = 0;
 	i = 0;
-	while (get_next_line(fd, &line) > 0)
+	while (get_next_line((int)stdin, &line) > 0)
 	{
 		ft_checkinst(chec, line);
 	}
@@ -81,14 +78,14 @@ void	ft_getcomands(t_chec *chec, char **line)
 int		main(int argc, char **argv)
 {
 	t_chec		*chec;
-	char		**line;
-	int			fd;
+	char		*line;
 
+	line = NULL;
 	chec = malloc(sizeof(t_chec));
 	if (!chec || argc <= 1)
 		return(0);
-	chec->totarg = argc - 1;
+	chec->totnum = argc - 1;
 	if (ft_getargv(chec, argv) == 0)
-		ft_getcommands(chec, &line);
+		ft_getcomands(chec, line);
 	return (0);
 }

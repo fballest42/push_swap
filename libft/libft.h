@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 10:14:57 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/26 08:56:36 by fballest         ###   ########.fr       */
+/*   Updated: 2021/03/30 12:31:11 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void		ft_lstiter(t_list *lst, void (*f)(void *));
 t_list		*ft_lstmap(t_list *lst, void *(*f)(void *),
 			void (*del)(void *));
 int			get_next_line(int fd, char **line);
+long long int	ft_atolli(const char *str);
 
 #endif
