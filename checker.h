@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/26 13:08:23 by fballest         ###   ########.fr       */
+/*   Updated: 2021/03/29 20:12:11 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,21 @@ int		ft_getargv(t_chec *chec, char **argv);
 void	ft_checkall(t_chec *chec);
 int		ft_printerror(char *str);
 void	ft_checknumbers(t_chec *chec, int x);
+void	ft_checkinst(t_chec *chec, char **line);
+void	ft_checkorder(t_chec *chec, char **line);
+
+void	ft_checkorder(t_chec *chec, char **line);
+void	ft_swapstack_a(t_chec *chec);
+void	ft_swapstack_b(t_chec *chec);
+void	ft_swapstack_ab(t_chec *chec);
+void	ft_pushstack_a(t_chec *chec);
+void	ft_pushstack_b(t_chec *chec);
+void	ft_rotatestack_a(t_chec *chec);
+void	ft_rotatestack_b(t_chec *chec);
+void	ft_rotatestack_ab(t_chec *chec);
+void	ft_rotrevstack_a(t_chec *chec);
+void	ft_rotrevstack_b(t_chec *chec);
+void	ft_rotrevstack_ab(t_chec *chec);
+void	ft_checkinst(t_chec *chec, char **line);
 
 #endif

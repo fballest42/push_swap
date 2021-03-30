@@ -58,31 +58,37 @@ int	ft_getargv(t_chec *chec, char **argv)
 			ft_printerror("Error\n");
 		ft_bzero(chec->staint[x], sizeof(int));
 		chec->staint[x][0] = ft_atoi(chec->temp[x]);
-		printf("%s ", chec->temp[x]);
-		printf("%d ", chec->staint[x][0]);
-		printf("%d\n", chec->staint[x][1]);
 		x++;
 	}
 	return (0);
 }
 
-void	ft_checkall(t_chec *chec)
+void	ft_getcomands(t_chec *chec, char **line)
 {
-	char	comp;
+	int		fd;
+	char	*instr;
+	int		i;
 
-	comp = 'x';
-	chec->ya = 0;
+	fd = 0;
+	i = 0;
+	while (get_next_line(fd, &line) > 0)
+	{
+		ft_checkinst(chec, line);
+	}
+	ft_checkorder(chec, line);
 }
 
 int		main(int argc, char **argv)
 {
 	t_chec		*chec;
+	char		**line;
+	int			fd;
 
 	chec = malloc(sizeof(t_chec));
 	if (!chec || argc <= 1)
-		return(ft_printerror("Error\n"));
+		return(0);
 	chec->totarg = argc - 1;
 	if (ft_getargv(chec, argv) == 0)
-		ft_checkall(chec);
+		ft_getcommands(chec, &line);
 	return (0);
 }
