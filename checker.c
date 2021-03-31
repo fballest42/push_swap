@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checker.c                                       :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/26 13:19:38 by fballest         ###   ########.fr       */
+/*   Updated: 2021/03/31 12:01:22 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_checknumbers(t_chec *chec, int z)
 			(chec->temp[z][1] >= '0' && chec->temp[z][y] <= '9')))
 			y++;
 		else
-			ft_printerror("Error\n");
+			ft_printerror("Error");
 	}
 }
 
@@ -39,10 +39,6 @@ int	ft_getargv(t_chec *chec, char **argv)
 	int		x;
 
 	x = 1;
-	chec->temp = malloc(sizeof(char *) * chec->totnum + 1);
-	chec->staint = malloc(sizeof(int *) * chec->totnum + 1);
-	if (!chec->temp || !chec->staint)
-		return(ft_printerror("Error\n"));
 	while (argv[x])
 	{
 		chec->temp[x - 1] = ft_strdup(argv[x]);
@@ -51,15 +47,16 @@ int	ft_getargv(t_chec *chec, char **argv)
 	}
 	chec->temp[x] = NULL;
 	x = 0;
+
 	while (chec->temp[x])
 	{
-		chec->staint[x] = malloc(sizeof(int) * 3);
+		chec->staint[x] = ft_calloc(sizeof(int), 3);
 		if (!chec->staint[x])
-			ft_printerror("Error\n");
-		ft_bzero(chec->staint[x], sizeof(int));
-		chec->staint[x][0] = ft_atoi(chec->temp[x]);
+			ft_printerror("Error");
+		chec->staint[0][x] = ft_atolli(chec->temp[x]);
 		x++;
 	}
+	ft_checknumbers_b(chec);
 	return (0);
 }
 
@@ -68,11 +65,11 @@ void	ft_getcomands(t_chec *chec, char *line)
 	int		i;
 
 	i = 0;
-	while (get_next_line((int)stdin, &line) > 0)
+	while (get_next_line(0, &line) > 0)
 	{
 		ft_checkinst(chec, line);
 	}
-	ft_checkorder(chec, line);
+	ft_checkorder(chec);
 }
 
 int		main(int argc, char **argv)
@@ -81,10 +78,14 @@ int		main(int argc, char **argv)
 	char		*line;
 
 	line = NULL;
-	chec = malloc(sizeof(t_chec));
+	chec = ft_calloc(sizeof(t_chec), 1);
 	if (!chec || argc <= 1)
-		return(0);
+		return (ft_printerror("Error"));
 	chec->totnum = argc - 1;
+	chec->temp = ft_calloc(sizeof(char *), chec->totnum + 1);
+	chec->staint = ft_calloc(sizeof(int *), chec->totnum + 1);
+	if (!chec->temp || !chec->staint)
+		return (ft_printerror("Error"));
 	if (ft_getargv(chec, argv) == 0)
 		ft_getcomands(chec, line);
 	return (0);

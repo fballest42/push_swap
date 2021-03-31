@@ -6,16 +6,16 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:29:57 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/30 13:10:42 by fballest         ###   ########.fr       */
+/*   Updated: 2021/03/31 11:37:08 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long long int	ft_atolli(const char *str)
+long int	ft_atolli(const char *str)
 {
-	int							sign;
-	unsigned long long int		res;
+	int			sign;
+	long int	res;
 
 	sign = 0;
 	res = 0;

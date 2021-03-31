@@ -6,7 +6,7 @@
 #    By: fballest <fballest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 12:11:55 by fballest          #+#    #+#              #
-#    Updated: 2021/03/26 12:42:17 by fballest         ###   ########.fr        #
+#    Updated: 2021/03/31 10:58:33 by fballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ NAME = checker
 NAME2 = push_swap
 
 # SOURCES #
-SRC = checker checker_2
+SRC = checker checker_2 checker_3 checker_4
 SRC2 = 
 
 SRCCHE = $(addsuffix .c, $(SRC))

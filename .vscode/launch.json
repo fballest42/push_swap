@@ -19,7 +19,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/checker",
-			"args": ["10", "12", "23", "214", "-215"],
+			"args": ["5", "2", "1", "3", "9", "2265454654654655"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
