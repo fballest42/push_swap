@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/31 11:50:46 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/05 10:55:20 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,26 @@ void	ft_swapstack_b(t_chec *chec)
 	tmp = chec->staint[1][0];
 	chec->staint[1][0] = chec->staint[1][1];
 	chec->staint[1][1] = tmp;
+}
+
+void	ft_checkorder(t_chec *chec)
+{
+	int		x;
+	int		y;
+
+	x = 0;
+	y = 1;
+	while (chec->staint[0][y] && !chec->stastr[1][x])
+	{
+		if (chec->staint[0][y] < chec->staint[0][x])
+			ft_printerror("KO");
+		x++;
+		y++;
+	}
+	ft_printerror("OK");
+}
+
+void	ft_printnumbers(t_chec *chec)
+{
+		
 }

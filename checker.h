@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/31 12:00:38 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/05 10:16:08 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	ft_getcomands(t_chec *chec, char *line);
 void	ft_checknumbers_b(t_chec *chec);
 void	ft_swapstack_a(t_chec *chec);
 void	ft_swapstack_b(t_chec *chec);
-
 void	ft_checkorder(t_chec *chec);
+void	ft_printnumbers(t_chec *chec);
 /*
 // FILE CHECKER_3.C
 */

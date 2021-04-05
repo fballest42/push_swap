@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/31 12:01:22 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/05 10:15:10 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,13 @@ void	ft_getcomands(t_chec *chec, char *line)
 	int		i;
 
 	i = 0;
-	while (get_next_line(0, &line) > 0)
+	while (get_next_line(0, &line) >= 0)
 	{
 		ft_checkinst(chec, line);
 	}
 	ft_checkorder(chec);
+	ft_printnumbers(chec);
+	
 }
 
 int		main(int argc, char **argv)
