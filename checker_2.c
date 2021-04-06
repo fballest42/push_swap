@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/05 10:55:20 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/06 13:53:20 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,19 @@ void	ft_checkorder(t_chec *chec)
 
 void	ft_printnumbers(t_chec *chec)
 {
-		
+	int		x;
+
+	x = 0;
+	while (chec->staint[0][x] || chec->staint[1][x])
+	{
+		if (!chec->staint[0][x])
+			printf("  ");
+		else if (chec->staint[0][x])
+			printf("%d ", chec->staint[0][x]);
+		if (!chec->staint[1][x])
+			printf("  ");
+		else if (chec->staint[1][x])
+			printf("%s\n", ft_itoa((int)chec->staint[1][x]));
+		x++;
+	}
 }
