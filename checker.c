@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/06 13:54:43 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/06 15:29:40 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ int		main(int argc, char **argv)
 	if (!chec->temp || !chec->staint)
 		return (ft_printerror("Error"));
 	if (ft_getargv(chec, argv) == 0)
+	{
+		ft_printnumbers(chec);
 		ft_getcomands(chec, line);
+	}
 	return (0);
 }
