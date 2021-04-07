@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/06 15:29:40 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:01:46 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,16 @@ int	ft_printerror(char *str)
 	exit(-1);
 }
 
-void	ft_checknumbers(t_chec *chec, int z)
+void	ft_checknumbers(char *str)
 {
-	int		y;
-
-	y = 0;
-	while (chec->temp[z][y])
+	if (*str == '-' && *str == '+')
+		str++;
+	while (*str)
 	{
-		if ((chec->temp[z][y] >= '0' && chec->temp[z][y] <= '9') ||
-			((chec->temp[z][0] == '-' || chec->temp[z][0] == '+') &&
-			(chec->temp[z][1] >= '0' && chec->temp[z][y] <= '9')))
-			y++;
+		if (ft_isdigit(*str))
+			str++;
 		else
-			ft_printerror("Error");
+			ft_printerror("Error 7");
 	}
 }
 
@@ -41,19 +38,19 @@ int	ft_getargv(t_chec *chec, char **argv)
 	x = 1;
 	while (argv[x])
 	{
-		chec->temp[x - 1] = ft_strdup(argv[x]);
-		ft_checknumbers(chec, x - 1);
+		ft_checknumbers(argv[x]);
 		x++;
 	}
-	chec->temp[x] = NULL;
 	x = 0;
-
-	while (chec->temp[x])
+	chec->staint[0] = ft_calloc(sizeof(long int), chec->totnum + 1);
+	chec->staint[1] = ft_calloc(sizeof(long int), chec->totnum + 1);
+	if (!chec->staint[0] || !chec->staint[1])
+		ft_printerror("Error 5");
+	while (argv[x + 1])
 	{
-		chec->staint[x] = ft_calloc(sizeof(int), 3);
-		if (!chec->staint[x])
-			ft_printerror("Error");
-		chec->staint[0][x] = ft_atolli(chec->temp[x]);
+		chec->staint[0][x] = ft_atolli(argv[x + 1]);
+		if (chec->staint[0][x] == 0)
+			chec->zero = 1;
 		x++;
 	}
 	ft_checknumbers_b(chec);
@@ -83,12 +80,11 @@ int		main(int argc, char **argv)
 	line = NULL;
 	chec = ft_calloc(sizeof(t_chec), 1);
 	if (!chec || argc <= 1)
-		return (ft_printerror("Error"));
+		return (ft_printerror("Error 8"));
 	chec->totnum = argc - 1;
-	chec->temp = ft_calloc(sizeof(char *), chec->totnum + 1);
-	chec->staint = ft_calloc(sizeof(int *), chec->totnum + 1);
-	if (!chec->temp || !chec->staint)
-		return (ft_printerror("Error"));
+	chec->staint = ft_calloc(sizeof(long int *), 3);
+	if (!chec->staint)
+		return (ft_printerror("Error 1"));
 	if (ft_getargv(chec, argv) == 0)
 	{
 		ft_printnumbers(chec);

@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/31 11:02:22 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/07 12:59:39 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_rotrevstack_ab(t_chec *chec)
 
 void	ft_checkinst(t_chec *chec, char *line)
 {
+	chec->instru = line;
 	if (!ft_strncmp(line, "sa", 2) || ft_strlen(line) > 2)
 		ft_swapstack_a(chec);
 	else if (!ft_strncmp(line, "sb", 2) || ft_strlen(line) > 2)
@@ -77,5 +78,5 @@ void	ft_checkinst(t_chec *chec, char *line)
 	else if (!ft_strncmp(line, "rrr", 3) || ft_strlen(line) > 3)
 		ft_rotrevstack_ab(chec);
 	else
-		ft_printerror("Error");
+		ft_printerror("Error 4");
 }

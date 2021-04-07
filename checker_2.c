@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/06 15:27:46 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/07 14:01:15 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,24 @@ void	ft_checknumbers_b(t_chec *chec)
 
 	y = 0;
 	x = 0;
-	while (chec->staint[0][y])
+	while (chec->staint[0][y] != 0 && chec->zero)
 	{
 		if (chec->staint[0][y] > INT_MAX || chec->staint[0][y] < INT_MIN)
-			ft_printerror("Error");
+		{
+			printf("%ld %d\n", chec->staint[0][y], y);
+			ft_printerror("Error 2");
+		}
 		y++;
 	}
 	y = 0;
 	while (chec->staint[0][x])
 	{
 		y = x + 1;
-		while (chec->staint[0][y])
+		while (chec->staint[0][y] != 0 && chec->zero)
 		{
 			if (chec->staint[0][y] == chec->staint[0][x])
-				ft_printerror("Error");
-		y++;
+				ft_printerror("Error 3");
+			y++;
 		}
 		x++;
 	}
@@ -60,16 +63,14 @@ void	ft_swapstack_b(t_chec *chec)
 void	ft_checkorder(t_chec *chec)
 {
 	int		x;
-	int		y;
 
 	x = 0;
-	y = 1;
-	while (chec->staint[0][y] && !chec->stastr[1][x])
+		printf("0 === %p 1 === %p\n", &chec->staint[0], &chec->stastr[1]);
+	while (chec->staint[0][x + 1] && !chec->staint[1][0])
 	{
-		if (chec->staint[0][y] < chec->staint[0][x])
+		if (chec->staint[0][x] > chec->staint[0][x + 1])
 			ft_printerror("KO");
 		x++;
-		y++;
 	}
 	ft_printerror("OK");
 }
@@ -79,16 +80,23 @@ void	ft_printnumbers(t_chec *chec)
 	int		x;
 
 	x = 0;
-	while (chec->staint[0][x])
+	printf("%s\n", chec->instru);
+	while (x < chec->totnum)
 	{
-		if (!chec->staint[0][x])
-			printf("  ");
-		else if (chec->staint[0][x])
-			printf("%ld ", chec->staint[0][x]);
-		if (!chec->staint[1][x])
-			printf("  ");
-		else if (chec->staint[1][x])
-			printf("%s\n", ft_itoa((int)chec->staint[1][x]));
+		char	*str;
+		// if (!chec->staint[0][x])
+		// 	printf("  ");
+		// if (chec->staint[0][x])
+		str = ft_itoa((int)chec->staint[1][x]);
+		if (ft_strncmp(str, "0", 1) == 0)
+			str = " ";
+	
+		printf("%ld %s\n", chec->staint[0][x], str);
+		// if (chec->staint[1][x] == 0)
+		// 	printf("\n");
+		//else if (chec->staint[1][x])
+		//	printf("%s\n", ft_itoa((int)chec->staint[1][x]));
 		x++;
 	}
+	printf("-------\n");
 }

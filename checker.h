@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/05 10:16:08 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/07 13:46:07 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ typedef struct s_chec
 	int			minnum;
 	int			midnum;
 	int			totnum;
+	int			zero;
 	int			totins;
 	int			totnumb;
 	char		**temp;
 	int			tmp;
 	long int	**staint;
 	char		**stastr;
-	char		**instru;
+	char		*instru;
 	int			ya;
 	int			yb;
 	char		*error;
@@ -49,7 +50,7 @@ typedef struct s_chec
 // FILE CHECKER.C
 */
 int		ft_printerror(char *str);
-void	ft_checknumbers(t_chec *chec, int z);
+void	ft_checknumbers(char *str);
 int		ft_getargv(t_chec *chec, char **argv);
 void	ft_getcomands(t_chec *chec, char *line);
 

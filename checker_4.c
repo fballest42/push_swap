@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/31 11:02:09 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/07 10:25:14 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,15 @@ void	ft_pushstack_a(t_chec *chec)
 	y = 1;
 	tmpa = chec->staint[0][0];
 	while (chec->staint[0][y])
-		chec->staint[0][x++] = chec->staint[0][y++];
-	chec->staint[0][y] = 0;
-	while (chec->staint[1][x])
+	{
+		chec->staint[0][x] = chec->staint[0][y];
+		chec->staint[0][y++] = 0;
+		x++;
+	}
+	x = 0;
+	y = 1;
+	while ((chec->staint[1][x] != 0 && !chec->zero)
+			|| (chec->staint[1][x] == 0 && chec->zero))
 		x++;
 	while (x >= 0)
 	{

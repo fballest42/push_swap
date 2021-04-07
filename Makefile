@@ -6,7 +6,7 @@
 #    By: fballest <fballest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 12:11:55 by fballest          #+#    #+#              #
-#    Updated: 2021/03/31 10:58:33 by fballest         ###   ########.fr        #
+#    Updated: 2021/04/07 13:50:14 by fballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJS2 = $(SRCPSW:.c=.o)
 LIBFT = libft/libft.a
 
 # COMPILER #
-CC = gcc -Wall -Wextra -Werror -g
+CC = gcc -Wall -Wextra -Werror -g3 -fsanitize=address -O0
 
 # COLOUR DEFINITION #
 BLUE = \033[0;34m

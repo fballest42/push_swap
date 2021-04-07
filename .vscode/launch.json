@@ -19,10 +19,9 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${workspaceFolder}/checker",
-			"args": ["5", "2", "1", "3", "9", "0"],
+			"args": ["5", "2", "1", "3", "9", "0", "<", "instruction.txt"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
-			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
 		}
