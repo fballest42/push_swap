@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/07 13:46:07 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/08 09:25:08 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,5 @@ void	ft_pushstack_a(t_chec *chec);
 void	ft_pushstack_b(t_chec *chec);
 void	ft_rotatestack_a(t_chec *chec);
 void	ft_rotatestack_b(t_chec *chec);
-
-
 
 #endif

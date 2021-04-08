@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/07 14:01:15 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/08 14:08:08 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ void	ft_checknumbers_b(t_chec *chec)
 	while (chec->staint[0][y] != 0 && chec->zero)
 	{
 		if (chec->staint[0][y] > INT_MAX || chec->staint[0][y] < INT_MIN)
-		{
-			printf("%ld %d\n", chec->staint[0][y], y);
 			ft_printerror("Error 2");
-		}
 		y++;
 	}
 	y = 0;
@@ -65,14 +62,13 @@ void	ft_checkorder(t_chec *chec)
 	int		x;
 
 	x = 0;
-		printf("0 === %p 1 === %p\n", &chec->staint[0], &chec->stastr[1]);
 	while (chec->staint[0][x + 1] && !chec->staint[1][0])
 	{
 		if (chec->staint[0][x] > chec->staint[0][x + 1])
-			ft_printerror("KO");
+			printf("KO\n");
 		x++;
 	}
-	ft_printerror("OK");
+	printf("OK\n");
 }
 
 void	ft_printnumbers(t_chec *chec)
@@ -80,7 +76,6 @@ void	ft_printnumbers(t_chec *chec)
 	int		x;
 
 	x = 0;
-	printf("%s\n", chec->instru);
 	while (x < chec->totnum)
 	{
 		char	*str;
