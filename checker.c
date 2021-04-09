@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/07 14:01:46 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/09 10:22:56 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_checknumbers(char *str)
 		if (ft_isdigit(*str))
 			str++;
 		else
-			ft_printerror("Error 7");
+			ft_printerror("Error\n Numeros a ordenar no válidos");
 	}
 }
 
@@ -45,7 +45,7 @@ int	ft_getargv(t_chec *chec, char **argv)
 	chec->staint[0] = ft_calloc(sizeof(long int), chec->totnum + 1);
 	chec->staint[1] = ft_calloc(sizeof(long int), chec->totnum + 1);
 	if (!chec->staint[0] || !chec->staint[1])
-		ft_printerror("Error 5");
+		ft_printerror("Error\n Error al reservar memoria");
 	while (argv[x + 1])
 	{
 		chec->staint[0][x] = ft_atolli(argv[x + 1]);
@@ -80,11 +80,11 @@ int		main(int argc, char **argv)
 	line = NULL;
 	chec = ft_calloc(sizeof(t_chec), 1);
 	if (!chec || argc <= 1)
-		return (ft_printerror("Error 8"));
+		return (ft_printerror("Error\n Número de argumentos invalidos"));
 	chec->totnum = argc - 1;
 	chec->staint = ft_calloc(sizeof(long int *), 3);
 	if (!chec->staint)
-		return (ft_printerror("Error 1"));
+		return (ft_printerror("Error\n Reserva de memoría fallida"));
 	if (ft_getargv(chec, argv) == 0)
 	{
 		ft_printnumbers(chec);

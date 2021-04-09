@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/07 10:25:14 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/09 13:17:21 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	ft_rotatestack_a(t_chec *chec)
 	y = 1;
 	while (chec->staint[0][y])
 		chec->staint[0][x++] = chec->staint[0][y++];
-	chec->staint[0][y] = temp;
+	chec->staint[0][y - 1] = temp;
 }
 
 void	ft_rotatestack_b(t_chec *chec)

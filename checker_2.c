@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/08 14:08:08 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/09 11:08:13 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_checknumbers_b(t_chec *chec)
 	while (chec->staint[0][y] != 0 && chec->zero)
 	{
 		if (chec->staint[0][y] > INT_MAX || chec->staint[0][y] < INT_MIN)
-			ft_printerror("Error 2");
+			ft_printerror("Error\n Números más altos de los permitidos");
 		y++;
 	}
 	y = 0;
@@ -32,7 +32,7 @@ void	ft_checknumbers_b(t_chec *chec)
 		while (chec->staint[0][y] != 0 && chec->zero)
 		{
 			if (chec->staint[0][y] == chec->staint[0][x])
-				ft_printerror("Error 3");
+				ft_printerror("Error\n números repetidos");
 			y++;
 		}
 		x++;
@@ -65,10 +65,14 @@ void	ft_checkorder(t_chec *chec)
 	while (chec->staint[0][x + 1] && !chec->staint[1][0])
 	{
 		if (chec->staint[0][x] > chec->staint[0][x + 1])
+		{
 			printf("KO\n");
+			break ;
+		}
 		x++;
 	}
-	printf("OK\n");
+	if (x == chec->totnum)
+		printf("OK\n");
 }
 
 void	ft_printnumbers(t_chec *chec)
