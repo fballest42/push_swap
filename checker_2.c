@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/09 11:08:13 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/09 19:57:02 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_printnumbers(t_chec *chec)
 		// 	printf("  ");
 		// if (chec->staint[0][x])
 		str = ft_itoa((int)chec->staint[1][x]);
-		if (ft_strncmp(str, "0", 1) == 0)
+		if (ft_strncmp(str, "0", 1) == 0 && !chec->zero)
 			str = " ";
 	
 		printf("%ld %s\n", chec->staint[0][x], str);
