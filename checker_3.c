@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/09 20:11:05 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/12 14:09:44 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_rotrevstack_a(t_chec *chec)
 	int		x;
 	int		y;
 
-	x = chec->totnum - 1;
-	y = chec->totnum;
-	temp = chec->staint[0][chec->totnum];
+	x = chec->totnum - 2;
+	y = chec->totnum - 1;
+	temp = chec->staint[0][y];
 	while (chec->staint[0][x])
 		chec->staint[0][y--] = chec->staint[0][x--];
 	chec->staint[0][x] = temp;

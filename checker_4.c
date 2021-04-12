@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/09 19:48:05 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/12 13:59:40 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_swapstack_ab(t_chec *chec)
 	ft_swapstack_b(chec);
 }
 
-void	ft_pushstack_a(t_chec *chec)
+void	ft_pushstack_b(t_chec *chec)
 {
 	int		tmpa;
 	int		x;
@@ -48,26 +48,32 @@ void	ft_pushstack_a(t_chec *chec)
 	chec->totnumb++;
 }
 
-void	ft_pushstack_b(t_chec *chec)
+void	ft_pushstack_a(t_chec *chec)
 {
-	int		tmpb;
+	int		tmpa;
 	int		x;
 	int		y;
 
 	x = 0;
 	y = 1;
-	tmpb = chec->staint[1][0];
+	tmpa = chec->staint[1][0];
 	while (chec->staint[1][y])
-		chec->staint[1][x++] = chec->staint[1][y++];
-	chec->staint[1][y] = 0;
-	while (chec->staint[0][x])
+	{
+		chec->staint[1][x] = chec->staint[1][y];
+		chec->staint[1][y++] = 0;
+		x++;
+	}
+	x = 0;
+	y = 1;
+	while ((chec->staint[0][x] != 0 && !chec->zero)
+			|| (chec->staint[0][x] == 0 && chec->zero))
 		x++;
 	while (x >= 0)
 	{
 		chec->staint[0][x + 1] = chec->staint[0][x];
 		x--;
 	}
-	chec->staint[0][0] = tmpb;
+	chec->staint[0][0] = tmpa;
 	chec->totnum++;
 	chec->totnumb--;
 }
@@ -97,5 +103,5 @@ void	ft_rotatestack_b(t_chec *chec)
 	y = 1;
 	while (chec->staint[1][y])
 		chec->staint[1][x++] = chec->staint[1][y++];
-	chec->staint[1][y] = tmp;
+	chec->staint[1][y - 1] = tmp;
 }
