@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/12 14:09:44 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:37:45 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,21 @@ void	ft_rotrevstack_a(t_chec *chec)
 	temp = chec->staint[0][y];
 	while (chec->staint[0][x])
 		chec->staint[0][y--] = chec->staint[0][x--];
-	chec->staint[0][x] = temp;
+	chec->staint[0][0] = temp;
 }
 
 void	ft_rotrevstack_b(t_chec *chec)
 {
-	int		tmp;
+	int		temp;
 	int		x;
 	int		y;
 
-	x = chec->totnum - 1;
-	y = chec->totnum;
-	tmp = chec->staint[1][chec->totnum];
+	x = chec->totnum - 2;
+	y = chec->totnum - 1;
+	temp = chec->staint[1][y];
 	while (chec->staint[1][x])
 		chec->staint[1][y--] = chec->staint[1][x--];
-	chec->staint[1][x] = tmp;
+	chec->staint[1][0] = temp;
 }
 
 void	ft_rotrevstack_ab(t_chec *chec)
@@ -60,9 +60,9 @@ void	ft_checkinst(t_chec *chec, char *line)
 		ft_swapstack_b(chec);
 	if (!ft_strncmp(line, "ss", 2) && ft_strlen(line) == 2 /*&& chec->totnum > 1 && chec->totnumb > 1*/)
 		ft_swapstack_ab(chec);
-	if (!ft_strncmp(line, "pa", 2) && ft_strlen(line) == 2 /*&& chec->totnumb >= 1*/)
+	if (!ft_strncmp(line, "pa", 2) && ft_strlen(line) == 2 && chec->totnumb >= 1)
 		ft_pushstack_a(chec);
-	if (!ft_strncmp(line, "pb", 2) && ft_strlen(line) == 2 /*&& chec->totnum >= 1*/)
+	if (!ft_strncmp(line, "pb", 2) && ft_strlen(line) == 2 && chec->totnum >= 1)
 		ft_pushstack_b(chec);
 	if (!ft_strncmp(line, "ra", 2) && ft_strlen(line) == 2 && chec->totnum > 1)
 		ft_rotatestack_a(chec);

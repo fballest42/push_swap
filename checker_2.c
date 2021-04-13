@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/12 14:07:04 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/13 13:32:58 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,31 @@ void	ft_checknumbers_b(t_chec *chec)
 {
 	int		y;
 	int		x;
+	int		z;
 
 	y = 0;
+	z = chec->totnum;
 	x = 0;
-	while (chec->staint[0][y] != 0 && chec->zero)
+	while (z > 0)
 	{
 		if (chec->staint[0][y] > INT_MAX || chec->staint[0][y] < INT_MIN)
 			ft_printerror("Error\n Números más altos de los permitidos");
 		y++;
+		z--;
 	}
 	y = 0;
-	while (chec->staint[0][x])
+	z = chec->totnum;
+	while (chec->staint[0][x] && z > 0)
 	{
 		y = x + 1;
-		while (chec->staint[0][y] != 0 && chec->zero)
+		while (chec->staint[0][y] != 0)
 		{
 			if (chec->staint[0][y] == chec->staint[0][x])
 				ft_printerror("Error\n números repetidos");
 			y++;
 		}
 		x++;
+		z--;
 	}
 }
 
@@ -78,29 +83,26 @@ void	ft_checkorder(t_chec *chec)
 void	ft_printnumbers(t_chec *chec)
 {
 	char	*str;
+	char	*str2;
 	int		x;
 	int		y;
+	
+	str = NULL;
+	str2 = NULL;
 	x = 0;
 	y = chec->totnumb;
 	if (chec->totnum > chec->totnumb)
 		y = chec->totnum;
 	while (x < y)
 	{
-
-		// if (!chec->staint[0][x])
-		// 	printf("  ");
-		// if (chec->staint[0][x])
-		str = ft_itoa((int)chec->staint[1][x]);
+		str = ft_itoa((int)chec->staint[0][x]);
 		if (ft_strncmp(str, "0", 1) == 0 && !chec->zero)
 			str = " ";
-	
-		printf("%ld %s\n", chec->staint[0][x], str);
-		// if (chec->staint[1][x] == 0)
-		// 	printf("\n");
-		//else if (chec->staint[1][x])
-		//	printf("%s\n", ft_itoa((int)chec->staint[1][x]));
+		str2 = ft_itoa((int)chec->staint[1][x]);
+		if (ft_strncmp(str2, "0", 1) == 0 && !chec->zero)
+			str2 = " ";
+		printf("%s %s\n", str, str2);
 		x++;
 	}
-	str = NULL;
 	printf("-------\n");
 }

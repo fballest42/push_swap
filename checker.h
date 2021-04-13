@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/08 09:25:08 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/13 10:50:37 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_chec
 	int			midnum;
 	int			totnum;
 	int			zero;
+	int			zeropos;
+	int			zerocol;
 	int			totins;
 	int			totnumb;
 	char		**temp;

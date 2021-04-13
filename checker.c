@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/09 10:22:56 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/13 11:01:36 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,15 @@ int	ft_getargv(t_chec *chec, char **argv)
 		ft_printerror("Error\n Error al reservar memoria");
 	while (argv[x + 1])
 	{
-		chec->staint[0][x] = ft_atolli(argv[x + 1]);
-		if (chec->staint[0][x] == 0)
+		if (argv[x + 1] == 0)
+		{
+			chec->staint[0][x] = 0;
 			chec->zero = 1;
+			chec->zeropos = x;
+			chec->zerocol = 0;
+		}
+		else
+			chec->staint[0][x] = ft_atolli(argv[x + 1]);
 		x++;
 	}
 	ft_checknumbers_b(chec);
