@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/13 11:01:36 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/14 13:29:40 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,9 @@ int	ft_getargv(t_chec *chec, char **argv)
 	chec->staint[1] = ft_calloc(sizeof(long int), chec->totnum + 1);
 	if (!chec->staint[0] || !chec->staint[1])
 		ft_printerror("Error\n Error al reservar memoria");
-	while (argv[x + 1])
+	while (argv[x + 1] != NULL)
 	{
-		if (argv[x + 1] == 0)
-		{
-			chec->staint[0][x] = 0;
-			chec->zero = 1;
-			chec->zeropos = x;
-			chec->zerocol = 0;
-		}
-		else
-			chec->staint[0][x] = ft_atolli(argv[x + 1]);
+		chec->staint[0][x] = ft_atolli(argv[x + 1]);
 		x++;
 	}
 	ft_checknumbers_b(chec);
@@ -66,16 +58,20 @@ int	ft_getargv(t_chec *chec, char **argv)
 void	ft_getcomands(t_chec *chec, char *line)
 {
 	int		i;
+	char	*str;
 
 	i = 0;
+	str = NULL;
 	while (get_next_line(0, &line) >= 0)
 	{
+		//FALTA CORTAR FLUJO CON CTRL + D
 		ft_checkinst(chec, line);
 		ft_printnumbers(chec);
 		ft_checkorder(chec);
 		free(line);
 	}
-	free(line);
+	if (line)
+		free(line);
 }
 
 int		main(int argc, char **argv)

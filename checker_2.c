@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/13 13:32:58 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/14 12:58:07 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,15 @@ void	ft_checknumbers_b(t_chec *chec)
 	x = 0;
 	while (z > 0)
 	{
+		if (chec->staint[0][y] == 0)
+		{
+			chec->zero = 1;
+			chec->zeropos = y;
+			chec->zerocol = 0;
+		}
 		if (chec->staint[0][y] > INT_MAX || chec->staint[0][y] < INT_MIN)
 			ft_printerror("Error\n Números más altos de los permitidos");
+
 		y++;
 		z--;
 	}
@@ -65,11 +72,22 @@ void	ft_swapstack_b(t_chec *chec)
 void	ft_checkorder(t_chec *chec)
 {
 	int		x;
+	int		y;
 
 	x = 0;
-	while (chec->staint[0][x + 1] && !chec->staint[1][0])
+	y = 0;
+	while (x < chec->totnum && chec->totnumb == 0)
 	{
-		if (chec->staint[0][x] > chec->staint[0][x + 1])
+		y = x + 1;
+		while (y < chec->totnum)
+		{
+			if (chec->staint[0][x] < chec->staint[0][y])
+				y++;
+			else
+				y = -1;
+				break ;
+		}
+		if (y == - 1)
 		{
 			printf("KO\n");
 			break ;
@@ -96,10 +114,10 @@ void	ft_printnumbers(t_chec *chec)
 	while (x < y)
 	{
 		str = ft_itoa((int)chec->staint[0][x]);
-		if (ft_strncmp(str, "0", 1) == 0 && !chec->zero)
+		if (ft_strncmp(str, "0", 1) == 0 && x >= chec->totnum)
 			str = " ";
 		str2 = ft_itoa((int)chec->staint[1][x]);
-		if (ft_strncmp(str2, "0", 1) == 0 && !chec->zero)
+		if (ft_strncmp(str2, "0", 1) == 0 && x >= chec->totnumb)
 			str2 = " ";
 		printf("%s %s\n", str, str2);
 		x++;

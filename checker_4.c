@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/13 13:26:56 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/14 12:19:25 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_pushstack_b(t_chec *chec)
 	tmpa = chec->staint[0][0];
 	if (chec->totnum == 1)
 		chec->staint[0][0] = 0;
-	while (chec->staint[0][x + 1])
+	while ((x + 1) <= chec->totnum)
 	{
 			chec->staint[0][x] = chec->staint[0][x + 1];
 			chec->staint[0][x + 1] = 0;
@@ -54,7 +54,7 @@ void	ft_pushstack_a(t_chec *chec)
 	tmpa = chec->staint[1][0];
 	if (chec->totnumb == 1)
 		chec->staint[1][0] = 0;
-	while (chec->staint[1][x + 1])
+	while ((x + 1) <= chec->totnumb)
 	{
 			chec->staint[1][x] = chec->staint[1][x + 1];
 			chec->staint[1][x + 1] = 0;
@@ -81,7 +81,7 @@ void	ft_rotatestack_a(t_chec *chec)
 	temp = chec->staint[0][0];
 	x = 0;
 	y = 1;
-	while (chec->staint[0][y])
+	while (y < chec->totnum)
 		chec->staint[0][x++] = chec->staint[0][y++];
 	chec->staint[0][y - 1] = temp;
 }
@@ -95,7 +95,7 @@ void	ft_rotatestack_b(t_chec *chec)
 	tmp = chec->staint[1][0];
 	x = 0;
 	y = 1;
-	while (chec->staint[1][y])
+	while (y < chec->totnumb)
 		chec->staint[1][x++] = chec->staint[1][y++];
 	chec->staint[1][y - 1] = tmp;
 }
