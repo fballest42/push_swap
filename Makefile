@@ -6,7 +6,7 @@
 #    By: fballest <fballest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 12:11:55 by fballest          #+#    #+#              #
-#    Updated: 2021/04/09 09:52:17 by fballest         ###   ########.fr        #
+#    Updated: 2021/04/15 10:15:56 by fballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,8 @@ NAME = checker
 NAME2 = push_swap
 
 # SOURCES #
-SRC = checker checker_2 checker_3 checker_4
-SRC2 = 
+SRC = checker checker_1 checker_2 checker_3 checker_4
+SRC2 = pusher checker_1 checker_2 checker_3 checker_4
 
 SRCCHE = $(addsuffix .c, $(SRC))
 SRCPSW = $(addsuffix .c, $(SRC2))
@@ -45,28 +45,34 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(OBJS2)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
-	@cd libft && make re
+	@cd libft && make
 	@echo "$(BLUE)==========CREATING CHECKER==========$(RESET)"
 	@$(CC) ${OBJS} $(LIBFT) -o ${NAME}
-	@echo "Done"
-	# @echo "$(BLUE)==========CREATING PUSH_SWAP==========$(RESET)"
-	# @$(CC) ${OBJS2} $(LIBFT) -o ${NAME2}
-	# @echo "Done"
+	@echo "Done checker file"
+	@echo "$(BLUE)==========CREATING PUSH_SWAP==========$(RESET)"
+	@$(CC) ${OBJS2} $(LIBFT) -o ${NAME2}
+	@echo "Done push_swap file"
 	@echo "$(GREEN)==========WELLDONE==========$(RESET)"
 	@echo "Success creating checker and push_swap files"
 
 clean:
 	@$(RM) $(OBJS)
-	@make -C libft/ clean
-	@$(RM) ${LIBFT}
+	@$(RM) $(OBJS2)
+	@$(RM) ${NAME}
+	@$(RM) ${NAME2}
 	@echo "$(GREEN)==========REMOVED==========$(RESET)"
 	@echo "Success normal cleaning of checker"
 
 fclean: clean
+	@$(RM) $(OBJS)
+	@$(RM) $(OBJS2)
+	@make -C libft/ fclean
+	@$(RM) ${LIBFT}
 	@$(RM) ${NAME}
+	@$(RM) ${NAME2}
 	@echo "$(GREEN)==========TOTALLY REMOVED==========$(RESET)"
 	@echo "Success deepest cleaning"
 
-re : fclean all
+re : clean all
 
 .PHONY: all clean fclean re shell addsuffix

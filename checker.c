@@ -6,91 +6,48 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/14 13:29:40 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/15 13:13:55 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int	ft_printerror(char *str)
-{
-	printf("%s\n", str);
-	exit(-1);
-}
-
-void	ft_checknumbers(char *str)
-{
-	if (*str == '-' && *str == '+')
-		str++;
-	while (*str)
-	{
-		if (ft_isdigit(*str))
-			str++;
-		else
-			ft_printerror("Error\n Numeros a ordenar no válidos");
-	}
-}
-
-int	ft_getargv(t_chec *chec, char **argv)
+static int		ft_countlines(char **str)
 {
 	int		x;
-
-	x = 1;
-	while (argv[x])
-	{
-		ft_checknumbers(argv[x]);
-		x++;
-	}
+	
 	x = 0;
-	chec->staint[0] = ft_calloc(sizeof(long int), chec->totnum + 1);
-	chec->staint[1] = ft_calloc(sizeof(long int), chec->totnum + 1);
-	if (!chec->staint[0] || !chec->staint[1])
-		ft_printerror("Error\n Error al reservar memoria");
-	while (argv[x + 1] != NULL)
-	{
-		chec->staint[0][x] = ft_atolli(argv[x + 1]);
+	while (str[x] != 0)
 		x++;
-	}
-	ft_checknumbers_b(chec);
-	return (0);
-}
-
-void	ft_getcomands(t_chec *chec, char *line)
-{
-	int		i;
-	char	*str;
-
-	i = 0;
-	str = NULL;
-	while (get_next_line(0, &line) >= 0)
-	{
-		//FALTA CORTAR FLUJO CON CTRL + D
-		ft_checkinst(chec, line);
-		ft_printnumbers(chec);
-		ft_checkorder(chec);
-		free(line);
-	}
-	if (line)
-		free(line);
+	return (x);
 }
 
 int		main(int argc, char **argv)
 {
 	t_chec		*chec;
-	char		*line;
+	char		**num;
 
-	line = NULL;
+	num = NULL;
 	chec = ft_calloc(sizeof(t_chec), 1);
 	if (!chec || argc <= 1)
-		return (ft_printerror("Error\n Número de argumentos invalidos"));
-	chec->totnum = argc - 1;
+		return (-1);
 	chec->staint = ft_calloc(sizeof(long int *), 3);
 	if (!chec->staint)
-		return (ft_printerror("Error\n Reserva de memoría fallida"));
-	if (ft_getargv(chec, argv) == 0)
+		return (ft_printerror("Error\n"));
+	if (argc == 2)
 	{
-		ft_printnumbers(chec);
-		ft_getcomands(chec, line);
+		num = ft_split(argv[1], ' ');
+		chec->totnum = ft_countlines(num);
+		chec->i = 0;
+		ft_getargv(chec, num);
 	}
+	else if (argc > 2)
+	{
+		chec->totnum = argc - 1;
+		chec->i = 1;
+		ft_getargv(chec, argv);
+	}
+	ft_printnumbers(chec);
+	ft_getcomands(chec);
 	return (0);
 }

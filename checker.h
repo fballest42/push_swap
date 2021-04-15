@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/13 10:50:37 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/15 13:12:32 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_chec
 	char		*error;
 	int			symbol;
 	char		symb;
+	int			i;
 }				t_chec;
 
 /*
@@ -54,7 +55,7 @@ typedef struct s_chec
 int		ft_printerror(char *str);
 void	ft_checknumbers(char *str);
 int		ft_getargv(t_chec *chec, char **argv);
-void	ft_getcomands(t_chec *chec, char *line);
+void	ft_getcomands(t_chec *chec);
 
 /*
 // FILE CHECKER_2.C
