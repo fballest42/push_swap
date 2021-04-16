@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/15 13:12:32 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/16 12:41:10 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,17 @@ typedef struct s_chec
 	int			symbol;
 	char		symb;
 	int			i;
+	char		*commands;
+	int			min;
+	int			min2;
+	int			max;
+	int			max2;
 }				t_chec;
 
 /*
-// FILE CHECKER.C
+// FILE CHECKER_1.C
 */
+int		ft_countlines(char **str);
 int		ft_printerror(char *str);
 void	ft_checknumbers(char *str);
 int		ft_getargv(t_chec *chec, char **argv);
@@ -84,5 +90,13 @@ void	ft_pushstack_a(t_chec *chec);
 void	ft_pushstack_b(t_chec *chec);
 void	ft_rotatestack_a(t_chec *chec);
 void	ft_rotatestack_b(t_chec *chec);
+
+/*
+// FILE PUSHER_1.C
+*/
+void	ft_createcommands(t_chec *chec);
+char	*ft_shortersort(t_chec *chec);
+char	*ft_threesort(t_chec *chec);
+void	ft_checpositions(t_chec *chec);
 
 #endif

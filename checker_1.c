@@ -6,11 +6,21 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/15 13:13:14 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/16 11:02:56 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+int		ft_countlines(char **str)
+{
+	int		x;
+	
+	x = 0;
+	while (str[x] != 0)
+		x++;
+	return (x);
+}
 
 int	ft_printerror(char *str)
 {
@@ -31,14 +41,13 @@ void	ft_checknumbers(char *str)
 	}
 }
 
-int	ft_getargv(t_chec *chec, char **argv)
+int	ft_getargv(t_chec *chec, char **strarg)
 {
 	int		x;
-
-	x = 1;
-	while (x < chec->totnum)
+	x = chec->i;
+	while (x <= chec->totnum)
 	{
-		ft_checknumbers(argv[x]);
+		ft_checknumbers(strarg[x]);
 		x++;
 	}
 	x = 0;
@@ -46,9 +55,9 @@ int	ft_getargv(t_chec *chec, char **argv)
 	chec->staint[1] = ft_calloc(sizeof(long int), chec->totnum + 1);
 	if (!chec->staint[0] || !chec->staint[1])
 		ft_printerror("Error\n Error al reservar memoria");
-	while (argv[x + chec->i] != NULL)
+	while (strarg[x + chec->i] != NULL)
 	{
-		chec->staint[0][x] = ft_atolli(argv[x + chec->i]);
+		chec->staint[0][x] = ft_atolli(strarg[x + chec->i]);
 		x++;
 	}
 	ft_checknumbers_b(chec);
