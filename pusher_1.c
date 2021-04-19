@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/19 11:44:18 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/19 13:48:45 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ char	*ft_threesort(t_chec *chec)
 
 }
 
-
-
 void	ft_checpositions(t_chec *chec)
 {
 	int		x;
@@ -83,6 +81,7 @@ void	ft_checpositions(t_chec *chec)
 		if (chec->staint[0][x] < chec->min2 && chec->staint[0][x] > chec->min)
 			chec->min2 = chec->staint[0][x];
 		if (chec->staint[0][x] > chec->max2 && chec->staint[0][x] < chec->max)
-			chec->min2 = chec->staint[0][x];	
+			chec->min2 = chec->staint[0][x];
+			
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/17 14:33:51 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/19 13:08:56 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/stat.h>
 # include <limits.h>
 # include "libft/libft.h"
+# include <limits.h>
 
 typedef struct s_chec
 {
