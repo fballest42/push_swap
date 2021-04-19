@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/17 15:18:49 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/19 11:44:18 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,22 @@ char	*ft_shortersort(t_chec *chec)
 
 char	*ft_threesort(t_chec *chec)
 {
-	ft_checkpositions(chec);
+	if (chec->staint[0][0] < chec->staint[0][1] &&
+		(chec->staint[0][2] > chec->staint[0][0] && chec->staint[0][2] < chec->staint[0][1]))
+	{
+		ft_rotrevstack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\n");
+	}
+	if (chec->staint[0][0] < chec->staint[0][1])
+	{
+		ft_swapstack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\n");
+	}
+	if (chec->staint[0][0] > chec->staint[0][1])
+	// ft_pushstack_b(chec);
+	// ft_pushstack_b(chec);
+	// if (chec->staintb[1][0] < chec->staintb[1][0])
+	// 	ft_che
 
 }
 
