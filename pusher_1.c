@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/19 13:48:45 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/19 14:30:33 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_createcommands(t_chec *chec)
 
 char	*ft_shortersort(t_chec *chec)
 {
-	if (chec->staint[0][1] > chec->staint[0][0])
+	if (chec->staint[0][1] < chec->staint[0][0])
 	{
 		ft_swapstack_a(chec);
 		chec->commands = ft_strjoin(chec->commands, chec->commands = "sa\n");
@@ -45,7 +45,7 @@ char	*ft_shortersort(t_chec *chec)
 char	*ft_threesort(t_chec *chec)
 {
 	if (chec->staint[0][0] < chec->staint[0][1] &&
-		(chec->staint[0][2] > chec->staint[0][0] && chec->staint[0][2] < chec->staint[0][1]))
+		(chec->staint[0][2] < chec->staint[0][0] && chec->staint[0][2] < chec->staint[0][1]))
 	{
 		ft_rotrevstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "rra\n");
@@ -56,6 +56,9 @@ char	*ft_threesort(t_chec *chec)
 		chec->instru = ft_strjoin(chec->instru, "sa\n");
 	}
 	if (chec->staint[0][0] > chec->staint[0][1])
+	{
+
+	}
 	// ft_pushstack_b(chec);
 	// ft_pushstack_b(chec);
 	// if (chec->staintb[1][0] < chec->staintb[1][0])
