@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/16 12:41:10 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/17 14:33:51 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,16 @@ void	ft_rotatestack_a(t_chec *chec);
 void	ft_rotatestack_b(t_chec *chec);
 
 /*
+// FILE CHECKER_5.C
+*/
+void	ft_freememory(t_chec *chec);
+
+/*
 // FILE PUSHER_1.C
 */
 void	ft_createcommands(t_chec *chec);
 char	*ft_shortersort(t_chec *chec);
 char	*ft_threesort(t_chec *chec);
-void	ft_checpositions(t_chec *chec);
+void	ft_checkpositions(t_chec *chec);
 
 #endif

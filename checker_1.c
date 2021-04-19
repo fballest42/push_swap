@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/16 11:02:56 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/17 16:23:12 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,11 @@ void	ft_getcomands(t_chec *chec)
 	line = NULL;
 	while (get_next_line(0, &line) >= 0)
 	{
-		//FALTA CORTAR FLUJO CON CTRL + D
+		if (line[0] == '\00')
+		{
+			ft_checkorder(chec);
+			exit (-2);
+		}
 		ft_checkinst(chec, line);
 		ft_printnumbers(chec);
 		ft_checkorder(chec);

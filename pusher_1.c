@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/16 13:41:58 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/17 15:18:49 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_shortersort(t_chec *chec)
 	if (chec->staint[0][1] > chec->staint[0][0])
 	{
 		ft_swapstack_a(chec);
-		chec->commands = ft_strjoin(chec->commands, chec->commands = "sa\n")
+		chec->commands = ft_strjoin(chec->commands, chec->commands = "sa\n");
 	}
 	else
 		chec->commands = ft_strjoin(chec->commands, chec->commands = "");
@@ -44,9 +44,11 @@ char	*ft_shortersort(t_chec *chec)
 
 char	*ft_threesort(t_chec *chec)
 {
-	ft_checkpostions(chec);
+	ft_checkpositions(chec);
 
 }
+
+
 
 void	ft_checpositions(t_chec *chec)
 {
