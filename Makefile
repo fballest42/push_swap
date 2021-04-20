@@ -6,7 +6,7 @@
 #    By: fballest <fballest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 12:11:55 by fballest          #+#    #+#              #
-#    Updated: 2021/04/17 15:20:29 by fballest         ###   ########.fr        #
+#    Updated: 2021/04/20 13:05:36 by fballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,15 +44,15 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) #$(OBJS2)
+$(NAME): $(OBJS) $(OBJS2)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@cd libft && make
 	@echo "$(BLUE)==========CREATING CHECKER==========$(RESET)"
 	@$(CC) ${OBJS} $(LIBFT) -o ${NAME}
 	@echo "Done checker file"
-	# @echo "$(BLUE)==========CREATING PUSH_SWAP==========$(RESET)"
-	# @$(CC) ${OBJS2} $(LIBFT) -o ${NAME2}
-	# @echo "Done push_swap file"
+	@echo "$(BLUE)==========CREATING PUSH_SWAP==========$(RESET)"
+	@$(CC) ${OBJS2} $(LIBFT) -o ${NAME2}
+	@echo "Done push_swap file"
 	@echo "$(GREEN)==========WELLDONE==========$(RESET)"
 	@echo "Success creating checker and push_swap files"
 
