@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/21 12:38:47 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/22 10:47:21 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_chec
 	char		symb;
 	int			i;
 	char		*commands;
-	int			min;
+	int			blo;
 	int			posa;
 	int			max;
 	int			posb;
@@ -105,12 +105,13 @@ void	ft_shortersort(t_chec *chec);
 void	ft_threesort(t_chec *chec);
 void	ft_threesort_b(t_chec *chec);
 void	ft_fewsort(t_chec *chec);
-void	ft_few_stab_a(t_chec *chec);
-void	ft_few_stab_b(t_chec *chec);
+// void	ft_few_stab_a(t_chec *chec);
+// void	ft_few_stab_b(t_chec *chec);
 void	ft_few_stab_order_b(t_chec *chec);
 void	ft_few_stab_back_a(t_chec *chec);
-void	ft_few_stab_go_b(t_chec *chec);
+// void	ft_few_stab_go_b(t_chec *chec);
 void	ft_checpositions(t_chec *chec);
 void	ft_insert_sta_a(t_chec *chec);
+void	ft_midsort(t_chec *chec);
 
 #endif
