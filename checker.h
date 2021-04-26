@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/22 10:47:21 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/26 12:15:41 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_chec
 	int			posa;
 	int			max;
 	int			posb;
+	int			minpos;
 }				t_chec;
 
 /*
@@ -113,5 +114,10 @@ void	ft_few_stab_back_a(t_chec *chec);
 void	ft_checpositions(t_chec *chec);
 void	ft_insert_sta_a(t_chec *chec);
 void	ft_midsort(t_chec *chec);
+void	ft_mid_stab_order_b(t_chec *chec);
+void	ft_mid_return_sta_a(t_chec *chec);
+void	ft_mid_stab_order_b(t_chec *chec);
+void	ft_mid_return_sta_min(t_chec *chec);
+void	ft_checminpos(t_chec *chec);
 
 #endif
