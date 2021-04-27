@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/17 16:23:12 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/27 13:58:45 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_getargv(t_chec *chec, char **strarg)
 {
 	int		x;
 	x = chec->i;
-	while (x <= chec->totnum)
+	while (x < chec->totnum)
 	{
 		ft_checknumbers(strarg[x]);
 		x++;

@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/20 13:52:29 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/27 15:11:03 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int		main(int argc, char **argv)
 		chec->i = 1;
 		ft_getargv(chec, argv);
 	}
-	ft_printnumbers(chec);
+	//ft_printnumbers(chec);
 	ft_createcommands(chec);
-	printf("\nINSTRUCCIONES\n%s", chec->instru);
-	ft_printnumbers(chec);
+	//printf("\nINSTRUCCIONES\n%s", chec->instru);
+	//ft_printnumbers(chec);
 	return (0);
 }
