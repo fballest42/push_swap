@@ -1,16 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pusher_1.c                                         :+:      :+:    :+:   */
+/*   pp.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/28 13:15:44 by fballest         ###   ########.fr       */
+/*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
+/*   Updated: 2021/04/28 12:25:28 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+int	ft_countlines(char **str)
+{
+	int		x;
+	
+	x = 0;
+	while (str[x] != 0)
+		x++;
+	return (x);
+
+
+
+
+
+
+}
+
 
 void	ft_createcommands(t_chec *chec)
 {
@@ -28,7 +45,6 @@ void	ft_createcommands(t_chec *chec)
 		ft_midsort(chec);
 		ft_mid_return_sta_a(chec);
 		ft_mid_return_sta_min(chec);
-
 	}
 	// if (chec->totnum > 12 && chec->totnum < 121 && chec->totnumb == 0)
 	// 	ft_centsort(chec);
@@ -90,6 +106,9 @@ void	ft_threesort_b(t_chec *chec)
 void	ft_fewsort(t_chec *chec)
 {
 	int		x;
+
+
+	
 
 	x = 0;
 	while (chec->totnum > 3 && x < 2)
@@ -242,40 +261,36 @@ void	ft_checpositions(t_chec *chec)
 	chec->posb = 0;
 	while (y <= chec->totnum)
 	{
-		if (y < chec->totnum && chec->staint[0][y] < chec->staint[1][0]
-			&& chec->staint[0][y + 1] > chec->staint[1][0])
+		if (y < chec->totnum && chec->staint[0][y] < chec->staint[1][0] && chec->staint[0][y + 1] > chec->staint[1][0])
 		{
-			chec->posa = y + 1;
+			chec->posa = y;
 			chec->posb = chec->totnum - chec->posa;
 		}
-		else if ((y == chec->totnum || y == 0)
-			&& ((chec->staint[0][0] < chec->staint[1][0]
-			&& chec->staint[1][0] < chec->staint[0][chec->totnum - 1])
-			|| (chec->staint[0][0] > chec->staint[1][0]
-			&& chec->staint[1][0] > chec->staint[0][chec->totnum - 1])
-			|| (chec->staint[0][0] < chec->staint[1][0]
-			&& chec->staint[1][0] > chec->staint[0][chec->totnum - 1]
-			&& chec->staint[0][0] > chec->staint[0][chec->totnum - 1])
-			|| (chec->staint[0][0] > chec->staint[1][0]
-			&& chec->staint[1][0] < chec->staint[0][chec->totnum - 1]
-			&& chec->staint[0][0] < chec->staint[0][chec->totnum - 1])))
+		if (y == chec->totnum && (chec->staint[0][0] < chec->staint[1][0] && chec->staint[1][0] < chec->staint[0][y - 1])
+			&& (chec->staint[0][0] > chec->staint[1][0] && chec->staint[1][0] > chec->staint[0][y - 1])
+			&& (chec->staint[0][0] < chec->staint[1][0] && chec->staint[1][0] > chec->staint[0][y - 1] && chec->staint[0][0] > chec->staint[0][y - 1])
+			&& (chec->staint[0][0] > chec->staint[1][0] && chec->staint[1][0] < chec->staint[0][y - 1] && chec->staint[0][0] < chec->staint[0][y - 1]))
 		{
 			chec->posa = 0;
 			chec->posb = chec->totnum - chec->posa;
 		}
-		else if ((y == chec->totnum || y == 0)
-			&& ((chec->staint[0][0] < chec->staint[1][0]
-			&& chec->staint[1][0] > chec->staint[0][chec->totnum - 1]
-			&& chec->staint[0][0] < chec->staint[0][chec->totnum - 1])
-			|| (chec->staint[0][0] > chec->staint[1][0]
-			&& chec->staint[1][0] < chec->staint[0][chec->totnum - 1]
-			&& chec->staint[0][0] > chec->staint[0][chec->totnum - 1])))
+		if (y == chec->totnum && (chec->staint[0][0] < chec->staint[1][0] && chec->staint[1][0] > chec->staint[0][y - 1] && chec->staint[0][0] < chec->staint[y - 1])
+			&& (chec->staint[0][0] > chec->staint[1][0] && chec->staint[1][0] < chec->staint[0][y - 1] && chec->staint[0][0] > chec->staint[y - 1]))
 		{
-			chec->posa = chec->totnum;
-			chec->posb = chec->totnum - chec->posa;
+			chec->posb = chec->totnum;
+			chec->posa = chec->totnum - chec->posa;
+			
 		}
 		y++;
+				
 	}
+	// chec->posa = 0;
+	// chec->posb = 0;
+	// while (chec->staint[0][chec->posa] < chec->staint[1][0]
+	// 		&& (chec->totnum - 1) >= chec->posa)
+	// 	chec->posa++;
+	// while (chec->staint[0][(chec->totnum - 1) - chec->posb] > chec->staint[1][0])
+	// 	chec->posb++;
 }
 
 void	ft_midsort(t_chec *chec)
@@ -461,11 +476,9 @@ void	ft_mid_return_sta_a(t_chec *chec)
 				chec->posa++;
 			}
 		}
-		if (chec->staint[1][0] < chec->staint[0][0]
-			&& chec->staint[0][chec->totnum - 1] > chec->staint[1][0])
+		if (chec->staint[1][0] < chec->staint[0][0] && chec->staint[0][chec->totnum - 1] > chec->staint[1][0])
 		{
-			while (chec->staint[0][chec->totnum - 1] < chec->staint[0][0]
-				&& chec->staint[0][chec->totnum - 1] > chec->staint[1][0])
+			while (chec->staint[0][chec->totnum - 1] < chec->staint[0][0] && chec->staint[0][chec->totnum - 1] > chec->staint[1][0])
 			{
 				ft_rotrevstack_a(chec);
 				chec->instru = ft_strjoin(chec->instru, "rra\n");

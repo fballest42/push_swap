@@ -84,10 +84,12 @@ void	ft_checkorder(t_chec *chec)
 			if (chec->staint[0][x] < chec->staint[0][y])
 				y++;
 			else
+			{
 				y = -1;
 				break ;
+			}
 		}
-		if (y == - 1)
+		if (y == x - 1)
 		{
 			printf("KO\n");
 			break ;

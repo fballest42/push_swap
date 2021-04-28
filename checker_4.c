@@ -29,8 +29,8 @@ void	ft_pushstack_b(t_chec *chec)
 		chec->staint[0][0] = 0;
 	while ((x + 1) <= chec->totnum)
 	{
-			chec->staint[0][x] = chec->staint[0][x + 1];
-			chec->staint[0][x + 1] = 0;
+		chec->staint[0][x] = chec->staint[0][x + 1];
+		chec->staint[0][x + 1] = 0;
 		x++;
 	}
 	x = 0;
@@ -56,8 +56,8 @@ void	ft_pushstack_a(t_chec *chec)
 		chec->staint[1][0] = 0;
 	while ((x + 1) <= chec->totnumb)
 	{
-			chec->staint[1][x] = chec->staint[1][x + 1];
-			chec->staint[1][x + 1] = 0;
+		chec->staint[1][x] = chec->staint[1][x + 1];
+		chec->staint[1][x + 1] = 0;
 		x++;
 	}
 	x = 0;
