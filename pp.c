@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/28 12:25:28 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/29 11:04:06 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,12 @@
 int	ft_countlines(char **str)
 {
 	int		x;
-	
+
 	x = 0;
 	while (str[x] != 0)
 		x++;
 	return (x);
-
-
-
-
-
-
 }
-
 
 void	ft_createcommands(t_chec *chec)
 {

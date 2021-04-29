@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/27 11:09:16 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/29 12:12:05 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_chec
 	int			max;
 	int			posb;
 	int			minpos;
+	int			minposb;
 }				t_chec;
 
 /*
@@ -68,6 +69,7 @@ void	ft_getcomands(t_chec *chec);
 /*
 // FILE CHECKER_2.C
 */
+
 void	ft_checknumbers_b(t_chec *chec);
 void	ft_swapstack_a(t_chec *chec);
 void	ft_swapstack_b(t_chec *chec);
@@ -76,6 +78,7 @@ void	ft_printnumbers(t_chec *chec);
 /*
 // FILE CHECKER_3.C
 */
+
 void	ft_rotatestack_ab(t_chec *chec);
 void	ft_rotrevstack_a(t_chec *chec);
 void	ft_rotrevstack_b(t_chec *chec);
@@ -101,17 +104,10 @@ void	ft_freememory(t_chec *chec);
 /*
 // FILE PUSHER_1.C
 */
-void	ft_createcommands(t_chec *chec);
-void	ft_shortersort(t_chec *chec);
-void	ft_threesort(t_chec *chec);
-void	ft_threesort_b(t_chec *chec);
-void	ft_fewsort(t_chec *chec);
+
 // void	ft_few_stab_a(t_chec *chec);
 // void	ft_few_stab_b(t_chec *chec);
-void	ft_few_stab_order_b(t_chec *chec);
-void	ft_few_stab_back_a(t_chec *chec);
 // void	ft_few_stab_go_b(t_chec *chec);
-void	ft_checpositions(t_chec *chec);
 void	ft_insert_sta_a(t_chec *chec);
 void	ft_midsort(t_chec *chec);
 void	ft_mid_stab_order_b(t_chec *chec);
@@ -121,5 +117,26 @@ void	ft_mid_return_sta_min(t_chec *chec);
 void	ft_checminpos(t_chec *chec);
 void	ft_threesort_mid(t_chec *chec);
 void	ft_threesort_midb(t_chec *chec);
+void	ft_threesort_midc(t_chec *chec);
+void	ft_threesort_midb(t_chec *chec);
+int		ft_order_stack_a(t_chec *chec);
+
+/*
+// FILE PUSHER_2.C
+*/
+void	ft_createcommands(t_chec *chec);
+void	ft_shortersort(t_chec *chec);
+void	ft_threesort(t_chec *chec);
+void	ft_threesort_b(t_chec *chec);
+void	ft_fewsort(t_chec *chec);
+
+/*
+// FILE PUSHER_3.C
+*/
+void	ft_few_stab_order_b(t_chec *chec);
+void	ft_few_stab_back_a(t_chec *chec);
+void	ft_checpositions(t_chec *chec);
+void	ft_checpositions_b(t_chec *chec, int y);
+void	ft_checpositions_c(t_chec *chec, int y);
 
 #endif
