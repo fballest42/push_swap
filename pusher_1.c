@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 14:20:44 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 09:39:24 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@ void	ft_insert_sta_a(t_chec *chec)
 {
 	while (chec->totnumb > 0)
 	{
+		ft_checminpos(chec);
 		ft_checpositions(chec);
-		if (chec->posa < chec->posb)
+		if (chec->staint[1][0] < chec->staint[0][0] && chec->staint[1][0] < chec->staint[0][chec->totnum - 1])
+		{
+			ft_pushstack_a(chec);
+			chec->instru = ft_strjoin(chec->instru, "pa\n");
+		}
+		else if (chec->posa && chec->posa <= chec->posb)
 		{
 			while (chec->posa > 0)
 			{
@@ -26,48 +32,43 @@ void	ft_insert_sta_a(t_chec *chec)
 				chec->posa--;
 			}
 		}
-		if (chec->posb < chec->posa)
+		else if (chec->posa == chec->totnum || chec->posa > chec->posb)
 		{
-			while (chec->posa > 0)
+			while (chec->posb > 0)
 			{
 				ft_rotrevstack_a(chec);
 				chec->instru = ft_strjoin(chec->instru, "rra\n");
-				chec->posa--;
+				chec->posb--;
 			}
 		}
-		ft_pushstack_a(chec);
-		chec->instru = ft_strjoin(chec->instru, "pa\n");
+
 	}
 	ft_order_stack_a(chec);
 }
 
-int	ft_order_stack_a(t_chec *chec)
+void	ft_order_stack_a(t_chec *chec)
 {
 	ft_checminpos(chec);
-	chec->minposb = chec->totnum - chec->minpos;
-	if (chec->minposb == 0)
-		return (0);
-	else if (chec->minposb > (chec->totnum / 2))
+	if (chec->minpos == 0)
+		ft_printnumbers(chec);
+	else if (chec->minpos > chec->totnum / 2)
 	{
-		while (chec->minpos > 0)
+		while (chec->minpos < chec->totnum)
 		{
 			ft_rotrevstack_a(chec);
 			chec->instru = ft_strjoin(chec->instru, "rra\n");
-			chec->minposb--;
+			chec->minpos++;
 		}
 	}
-	else
+	else if (chec->minpos < chec->totnum / 2)
 	{
 		while (chec->minposb < chec->totnum)
 		{
-			if (chec->minposb == 0)
-				break ;
 			ft_rotatestack_a(chec);
 			chec->instru = ft_strjoin(chec->instru, "ra\n");
 			chec->minpos++;
 		}
 	}
-	return (0);
 }
 
 void	ft_threesort_mid(t_chec *chec)
@@ -406,14 +407,13 @@ void	ft_checminpos(t_chec *chec)
 	j = 0;
 	chec->minnum = chec->staint[0][0];
 	chec->minpos = 0;
-	while (j < chec->totnum)
+	while (j++ < chec->totnum)
 	{
 		if (chec->minnum > chec->staint[0][j - 1])
 		{
 			chec->minnum = chec->staint[0][j - 1];
-			chec->minpos = j;
+			chec->minpos = j - 1;
 		}
-		j++;
 	}
 }
 

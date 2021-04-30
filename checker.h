@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 12:12:05 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/29 19:14:28 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	ft_threesort_mid(t_chec *chec);
 void	ft_threesort_midb(t_chec *chec);
 void	ft_threesort_midc(t_chec *chec);
 void	ft_threesort_midb(t_chec *chec);
-int		ft_order_stack_a(t_chec *chec);
+void	ft_order_stack_a(t_chec *chec);
 
 /*
 // FILE PUSHER_2.C

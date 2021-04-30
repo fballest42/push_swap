@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:02:12 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 10:34:47 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/29 19:24:48 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ void	ft_fewsort(t_chec *chec)
 		if (chec->totnumb > 1)
 			ft_few_stab_order_b(chec);
 	}
-	ft_threesort_mid(chec);
+	ft_threesort(chec);
 	while (chec->totnumb > 0 && x > 0)
 	{
-		ft_few_stab_back_a(chec);
+		ft_insert_sta_a(chec);
 		x--;
 	}
 }

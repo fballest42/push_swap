@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 14:10:06 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 09:21:39 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,16 @@ void	ft_checpositions(t_chec *chec)
 	y = 0;
 	chec->posa = 0;
 	chec->posb = chec->totnum - 1;
-	while (y < (chec->totnum - 1))
+	if (chec->staint[1][0] < chec->minnum)
+		chec->posa = chec->minpos;
+	else
 	{
-		if (chec->staint[1][0] > chec->staint[0][y])
-			chec->posa = y + 1;
-		y++;
+		while (y < (chec->totnum - 1))
+		{
+			if (chec->staint[1][0] > chec->staint[0][y])
+				chec->posa = y + 1;
+			y++;
+		}
 	}
 	chec->posb = chec->totnum - chec->posa;
 }
