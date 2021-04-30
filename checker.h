@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/30 10:30:17 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 11:13:47 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_chec
 {
 	int			maxnum;
 	int			minnum;
+	int			minumb;
 	int			midnum;
 	int			totnum;
 	int			zero;
@@ -109,13 +110,14 @@ void	ft_freememory(t_chec *chec);
 // void	ft_few_stab_b(t_chec *chec);
 // void	ft_few_stab_go_b(t_chec *chec);
 void	ft_insert_sta_a(t_chec *chec);
+void	ft_insert_sta_b(t_chec *chec);
 void	ft_midsort(t_chec *chec);
 void	ft_mid_stab_order_b(t_chec *chec);
 void	ft_mid_return_sta_a(t_chec *chec);
 void	ft_mid_stab_order_b(t_chec *chec);
 void	ft_mid_return_sta_min(t_chec *chec);
 void	ft_checminpos(t_chec *chec);
-void	ft_checminpos_b(t_chec *chec)
+void	ft_checminpos_b(t_chec *chec);
 void	ft_threesort_mid(t_chec *chec);
 void	ft_threesort_midb(t_chec *chec);
 void	ft_threesort_midc(t_chec *chec);

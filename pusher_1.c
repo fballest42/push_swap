@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/30 10:32:24 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 13:55:04 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_insert_sta_a(t_chec *chec)
 	{
 		ft_checminpos(chec);
 		ft_checpositions(chec);
-		if (chec->posa && chec->posa <= chec->posb)
+		if (chec->posa <= chec->posb)
 		{
 			while (chec->posa > 0)
 			{
@@ -170,7 +170,7 @@ void	ft_midsort(t_chec *chec)
 		chec->instru = ft_strjoin(chec->instru, "pb\n");
 		x++;
 		if (chec->totnumb > 1)
-			ft_insert_stack_b(chec);
+			ft_insert_sta_b(chec);
 	}
 	ft_threesort_mid(chec);
 	chec->blo--;
@@ -344,8 +344,8 @@ void	ft_mid_stab_order_b(t_chec *chec)
 			chec->instru = ft_strjoin(chec->instru, "sb\n");
 		}
 	}
-	if (chec->totnum > 3)
-		ft_
+	// if (chec->totnum > 3)
+	// 	ft_
 }
 
 void	ft_checminpos(t_chec *chec)

@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:02:12 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/30 10:32:39 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 11:32:43 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_createcommands(t_chec *chec)
 		ft_fewsort(chec);
 	if (chec->totnum >= 6 && chec-> totnum < 501)
 		ft_midsort(chec);
-	else
-		ft_printerror("Error\n Too much numbers, pleaser insert from 1 to 500 numbers");
+	if (chec->totnum > 500)
+		ft_printerror("Error\n Too much numbers, pleaser insert numbers");
 }
 
 void	ft_shortersort(t_chec *chec)

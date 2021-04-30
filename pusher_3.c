@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/30 10:30:31 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 14:10:35 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,31 @@ void	ft_checpositions(t_chec *chec)
 
 	y = 0;
 	chec->posa = 0;
-	chec->posb = chec->totnum - 1;
+	chec->posb = 0;
 	if (chec->staint[1][0] < chec->minnum)
 		chec->posa = chec->minpos;
 	else
 	{
-		while (y < chec->totnum)
+		while (y < chec->totnum - 1)
 		{
-			if (chec->staint[1][0] > chec->staint[0][y])
-				chec->posa = y + 1;
+			if ((chec->staint[1][0] > chec->staint[0][y]
+				&& chec->staint[0][y] != chec->minnum)
+				|| (chec->staint[0][y] == chec->minnum
+				&& chec->staint[1][0] > chec->minnum))
+				chec->posa++;
+			// else if (chec->staint[1][0] > chec->staint[0][y]
+			// 		&& chec->staint[1][0] != chec->minnum)
+			// 	chec->posb = chec->totnum - y;
+			else if (chec->staint[0][y] == chec->minnum && chec->posa > 1)
+			{
+			 	chec->posa--;
+				 break ;
+			}
 			y++;
 		}
 	}
-	chec->posb = chec->totnum - chec->posa;
+	if (chec->posb == 0)
+		chec->posb = chec->totnum - chec->posa;
 }
 
 void	ft_checpositions_b(t_chec *chec)
@@ -90,7 +102,7 @@ void	ft_checpositions_b(t_chec *chec)
 	y = 0;
 	chec->posa = 0;
 	chec->posb = chec->totnumb - 1;
-	if (chec->staint[0][0] < chec->minnumb)
+	if (chec->staint[0][0] < chec->minumb)
 		chec->posa = chec->minpos;
 	else
 	{
@@ -98,6 +110,8 @@ void	ft_checpositions_b(t_chec *chec)
 		{
 			if (chec->staint[0][0] > chec->staint[1][y])
 				chec->posa = y + 1;
+			if (chec->staint[1][y] == chec->minnum)
+				break ;
 			y++;
 		}
 	}
