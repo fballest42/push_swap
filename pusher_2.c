@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:02:12 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 19:24:48 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 10:32:39 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ void	ft_createcommands(t_chec *chec)
 	if (chec->totnum > 3 && chec->totnum < 6)
 		ft_fewsort(chec);
 	if (chec->totnum >= 6 && chec-> totnum < 501)
-	{
 		ft_midsort(chec);
-		ft_mid_return_sta_a(chec);
-		ft_mid_return_sta_min(chec);
-	}
+	else
+		ft_printerror("Error\n Too much numbers, pleaser insert from 1 to 500 numbers");
 }
 
 void	ft_shortersort(t_chec *chec)
@@ -106,4 +104,5 @@ void	ft_fewsort(t_chec *chec)
 		ft_insert_sta_a(chec);
 		x--;
 	}
+	ft_order_stack_a(chec);
 }

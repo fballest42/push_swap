@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 19:14:28 by fballest         ###   ########.fr       */
+/*   Updated: 2021/04/30 10:30:17 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ void	ft_mid_return_sta_a(t_chec *chec);
 void	ft_mid_stab_order_b(t_chec *chec);
 void	ft_mid_return_sta_min(t_chec *chec);
 void	ft_checminpos(t_chec *chec);
+void	ft_checminpos_b(t_chec *chec)
 void	ft_threesort_mid(t_chec *chec);
 void	ft_threesort_midb(t_chec *chec);
 void	ft_threesort_midc(t_chec *chec);
@@ -136,7 +137,6 @@ void	ft_fewsort(t_chec *chec);
 void	ft_few_stab_order_b(t_chec *chec);
 void	ft_few_stab_back_a(t_chec *chec);
 void	ft_checpositions(t_chec *chec);
-void	ft_checpositions_b(t_chec *chec, int y);
-void	ft_checpositions_c(t_chec *chec, int y);
+void	ft_checpositions_b(t_chec *chec);
 
 #endif
