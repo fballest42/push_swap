@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/29 11:04:06 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 21:15:21 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,29 +170,22 @@ void	ft_few_stab_back_a(t_chec *chec)
 	ft_insert_sta_a(chec);
 }
 
-void	ft_insert_sta_a(t_chec *chec)
+void	ft_insert_sta_b(t_chec *chec)
 {
-	int		x;
-
-	x = 0;
-	if (chec->totnumb >= 0)
+	if (chec->staint[0][0]) == 1)
 	{
-		ft_checpositions(chec);
-		if (chec->posa == 1)
-		{
-			ft_pushstack_a(chec);
-			ft_swapstack_a(chec);
-			chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
-			ft_insert_sta_a(chec);
-		}
-		if (chec->posb == 1 && chec->posa == 0)
-		{
-			ft_rotatestack_a(chec);
-			x++;
-			ft_pushstack_a(chec);
-			chec->instru = ft_strjoin(chec->instru, "ra\npa\n");
-			ft_insert_sta_a(chec);
-		}
+		ft_pushstack_a(chec);
+		ft_swapstack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
+		ft_insert_sta_a(chec);
+	}
+	if (chec->posb == 1 && chec->posa == 0)
+	{
+		ft_rotatestack_a(chec);
+		x++;
+		ft_pushstack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "ra\npa\n");
+		ft_insert_sta_a(chec);
 	}
 }
 

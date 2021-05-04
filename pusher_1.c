@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/30 13:55:04 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 21:15:09 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,61 +36,93 @@ void	ft_insert_sta_a(t_chec *chec)
 				chec->posb--;
 			}
 		}
-		ft_pushstack_a(chec);
-		chec->instru = ft_strjoin(chec->instru, "pa\n");
+		if (chec->staint[1][0] < chec->minnum || chec->staint[1][0] > chec->maxnum)
+		{
+			ft_pushstack_a(chec);
+			chec->instru = ft_strjoin(chec->instru, "pa\n");
+		}
+		while (chec->staint[1][0] < chec->staint[0][0]
+				&& chec->staint[1][0] > chec->staint[0][chec->totnum - 1])
+		{
+			ft_pushstack_a(chec);
+			chec->instru = ft_strjoin(chec->instru, "pa\n");
+		}
 	}
 }
 
 void	ft_insert_sta_b(t_chec *chec)
 {
-	while (chec->totnum > 3)
+	int		rra;
+	int		ra;
+
+	rra = 0;
+	ra = 0;
+	ft_checminpos_b(chec);
+	ft_checpositions_b(chec);
+	if (chec->posa && chec->posa <= chec->posb)
 	{
-		ft_checminpos_b(chec);
-		ft_checpositions_b(chec);
-		if (chec->posa && chec->posa <= chec->posb)
+		while (chec->posa > 0)
 		{
-			while (chec->posa > 0)
-			{
-				ft_rotatestack_b(chec);
-				chec->instru = ft_strjoin(chec->instru, "rb\n");
-				chec->posa--;
-			}
+			ft_rotatestack_b(chec);
+			chec->instru = ft_strjoin(chec->instru, "rb\n");
+			chec->posa--;
+			rra++;
 		}
-		else if (chec->posa == chec->totnum || chec->posa > chec->posb)
+	}
+	else if (chec->posa == chec->totnum || chec->posa > chec->posb)
+	{
+		while (chec->posb > 0)
 		{
-			while (chec->posb > 0)
-			{
-				ft_rotrevstack_b(chec);
-				chec->instru = ft_strjoin(chec->instru, "rrb\n");
-				chec->posb--;
-			}
+			ft_rotrevstack_b(chec);
+			chec->instru = ft_strjoin(chec->instru, "rrb\n");
+			chec->posb--;
+			ra++;
 		}
-		ft_pushstack_b(chec);
-		chec->instru = ft_strjoin(chec->instru, "pb\n");
-	}	
+	}
+	while (chec->staint[0][0] > chec->staint[1][0]
+			&& chec->staint[0][0] < chec->staint[1][2])
+	{
+		ft_pushstack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "pa\n");
+	}
+	while (ra > 0 && rra > 0)
+	{
+		if (ra > 0)
+		{
+			ft_rotatestack_b(chec);
+			chec->instru = ft_strjoin(chec->instru, "rrb\n");
+			ra--;
+		}
+		else if (ra > 0)
+		{
+			ft_rotrevstack_b(chec);
+			chec->instru = ft_strjoin(chec->instru, "rrb\n");
+			rra--;
+		}	
+	}
 }
 
 void	ft_order_stack_a(t_chec *chec)
 {
 	ft_checminpos(chec);
-	if (chec->minpos == 0)
-		ft_printnumbers(chec);
-	else if (chec->minpos >= chec->totnum / 2)
+	// if (chec->minpos == 0)
+	// 	ft_printnumbers(chec);
+	if (chec->minpos <= chec->totnum / 2 && chec->minpos != 0)
 	{
-		while (chec->minpos < chec->totnum)
-		{
-			ft_rotrevstack_a(chec);
-			chec->instru = ft_strjoin(chec->instru, "rra\n");
-			chec->minpos++;
-		}
-	}
-	else if (chec->minpos < chec->totnum / 2)
-	{
-		while (chec->minposb < chec->totnum)
+		while (chec->minpos > 0)
 		{
 			ft_rotatestack_a(chec);
 			chec->instru = ft_strjoin(chec->instru, "ra\n");
-			chec->minpos++;
+			ft_checminpos(chec);
+		}
+	}
+	else if (chec->minpos > chec->totnum / 2 && chec->minpos != 0)
+	{
+		while ((chec->totnum - chec->minpos) != chec->totnum)
+		{
+			ft_rotrevstack_a(chec);
+			chec->instru = ft_strjoin(chec->instru, "rra\n");
+			ft_checminpos(chec);
 		}
 	}
 }
@@ -166,11 +198,14 @@ void	ft_midsort(t_chec *chec)
 	{
 		if (chec->blo == 1)
 			x = x - 3;
+		if (chec->totnumb > 1)
+			ft_mid_stab_order_b(chec);
 		ft_pushstack_b(chec);
 		chec->instru = ft_strjoin(chec->instru, "pb\n");
+		if (chec->ra > 0 || chec->rra > 0)
+			ft_orderposition(chec);
 		x++;
-		if (chec->totnumb > 1)
-			ft_insert_sta_b(chec);
+
 	}
 	ft_threesort_mid(chec);
 	chec->blo--;
@@ -335,7 +370,10 @@ void	ft_mid_stab_order_b(t_chec *chec)
 	{
 		if (chec->staint[1][0] < chec->staint[1][1] && chec->staint[1][0] < chec->staint[1][2])
 		{
+			ft_swapstack_b(chec);
 			ft_rotatestack_b(chec);
+			ft_swapstack_b(chec);
+			ft_rotrevstack_a(chec);
 			chec->instru = ft_strjoin(chec->instru, "rb\n");
 		}
 		if (chec->staint[1][0] < chec->staint[1][1] && chec->staint[1][0] > chec->staint[1][2])
@@ -356,7 +394,9 @@ void	ft_checminpos(t_chec *chec)
 	i = 0;
 	j = 0;
 	chec->minnum = chec->staint[0][0];
+	chec->maxnum = chec->staint[0][0];
 	chec->minpos = 0;
+	chec->maxpos = 0;
 	while (j++ < chec->totnum)
 	{
 		if (chec->minnum > chec->staint[0][j - 1])
@@ -364,18 +404,24 @@ void	ft_checminpos(t_chec *chec)
 			chec->minnum = chec->staint[0][j - 1];
 			chec->minpos = j - 1;
 		}
+		else if (chec->maxnum < chec->staint[0][j - 1])
+		{
+			chec->maxnum = chec->staint[0][j - 1];
+			chec->maxpos = j - 1;
+		}
 	}
+	chec->minposb = (chec->totnum - 1) - chec->minnum;
 }
 
 void	ft_checminpos_b(t_chec *chec)
 {
-	int		i;
 	int		j;
 
-	i = 0;
 	j = 0;
 	chec->minnum = chec->staint[1][0];
+	chec->maxnum = chec->staint[1][0];
 	chec->minpos = 0;
+	chec->maxpos = 0;
 	while (j++ < chec->totnumb)
 	{
 		if (chec->minnum > chec->staint[1][j - 1])
@@ -383,7 +429,13 @@ void	ft_checminpos_b(t_chec *chec)
 			chec->minnum = chec->staint[1][j - 1];
 			chec->minpos = j - 1;
 		}
+		else if (chec->maxnum < chec->staint[1][j - 1])
+		{
+			chec->maxnum = chec->staint[1][j - 1];
+			chec->maxpos = j - 1;
+		}
 	}
+	chec->minposb = (chec->totnum - 1) - chec->minnum;
 }
 
 // void	ft_few_stab_go_b(t_chec *chec)

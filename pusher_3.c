@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/30 14:10:35 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/04 19:11:38 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,27 @@ void	ft_checpositions(t_chec *chec)
 	chec->posb = 0;
 	if (chec->staint[1][0] < chec->minnum)
 		chec->posa = chec->minpos;
+	else if (chec->staint[1][0] > chec->maxnum)
+		chec->posa = chec->maxpos + 1;
 	else
 	{
 		while (y < chec->totnum - 1)
 		{
 			if ((chec->staint[1][0] > chec->staint[0][y]
-				&& chec->staint[0][y] != chec->minnum)
-				|| (chec->staint[0][y] == chec->minnum
-				&& chec->staint[1][0] > chec->minnum))
-				chec->posa++;
-			// else if (chec->staint[1][0] > chec->staint[0][y]
-			// 		&& chec->staint[1][0] != chec->minnum)
-			// 	chec->posb = chec->totnum - y;
-			else if (chec->staint[0][y] == chec->minnum && chec->posa > 1)
-			{
-			 	chec->posa--;
-				 break ;
-			}
+				&& chec->staint[1][0] < chec->staint[0][y + 1])
+				|| (chec->staint[1][0] < chec->staint[0][y]
+				&& chec->staint[1][0] > chec->staint[0][y + 1]))
+				chec->posa = y + 1;
+			// if ((chec->staint[1][0] > chec->staint[0][y]
+			// 	&& chec->staint[0][y] != chec->minnum)
+			// 	|| (chec->staint[0][y] == chec->minnum
+			// 	&& chec->staint[1][0] > chec->minnum))
+			// 	chec->posa++;
+			// else if (chec->staint[0][y] == chec->minnum && chec->posa > 1)
+			// {
+			// 	chec->posa--;
+			// 	break ;
+			// }
 			y++;
 		}
 	}
@@ -97,23 +101,37 @@ void	ft_checpositions(t_chec *chec)
 
 void	ft_checpositions_b(t_chec *chec)
 {
-	int		y;
+		int		y;
 
 	y = 0;
 	chec->posa = 0;
-	chec->posb = chec->totnumb - 1;
-	if (chec->staint[0][0] < chec->minumb)
+	chec->posb = 0;
+	if (chec->staint[0][0] < chec->minnum)
 		chec->posa = chec->minpos;
+	else if (chec->staint[0][0] > chec->maxnum)
+		chec->posa = chec->maxpos + 1;
 	else
 	{
-		while (y < chec->totnumb)
+		while (y < chec->totnumb - 1)
 		{
-			if (chec->staint[0][0] > chec->staint[1][y])
+			if ((chec->staint[0][0] > chec->staint[1][y]
+				&& chec->staint[0][0] < chec->staint[1][y + 1])
+				|| (chec->staint[0][0] < chec->staint[1][y]
+				&& chec->staint[0][0] > chec->staint[1][y + 1]))
 				chec->posa = y + 1;
-			if (chec->staint[1][y] == chec->minnum)
-				break ;
+			// if ((chec->staint[1][0] > chec->staint[0][y]
+			// 	&& chec->staint[0][y] != chec->minnum)
+			// 	|| (chec->staint[0][y] == chec->minnum
+			// 	&& chec->staint[1][0] > chec->minnum))
+			// 	chec->posa++;
+			// else if (chec->staint[0][y] == chec->minnum && chec->posa > 1)
+			// {
+			// 	chec->posa--;
+			// 	break ;
+			// }
 			y++;
 		}
 	}
-	chec->posb = chec->totnumb - chec->posa;
+	if (chec->posb == 0)
+		chec->posb = chec->totnumb - chec->posa;
 }
