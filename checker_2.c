@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/14 12:58:07 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/05 09:56:00 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_checknumbers_b(t_chec *chec)
 		}
 		if (chec->staint[0][y] > INT_MAX || chec->staint[0][y] < INT_MIN)
 			ft_printerror("Error\n Números más altos de los permitidos");
-
 		y++;
 		z--;
 	}
@@ -106,7 +105,7 @@ void	ft_printnumbers(t_chec *chec)
 	char	*str2;
 	int		x;
 	int		y;
-	
+
 	str = NULL;
 	str2 = NULL;
 	x = 0;

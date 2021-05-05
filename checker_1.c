@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/04/28 13:34:26 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/05 09:56:34 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		ft_countlines(char **str)
 {
 	int		x;
-	
+
 	x = 0;
 	while (str[x] != 0)
 		x++;
@@ -44,6 +44,7 @@ void	ft_checknumbers(char *str)
 int	ft_getargv(t_chec *chec, char **strarg)
 {
 	int		x;
+
 	x = chec->i;
 	while (x < chec->totnum)
 	{
@@ -62,9 +63,6 @@ int	ft_getargv(t_chec *chec, char **strarg)
 	}
 	ft_checknumbers_b(chec);
 	return (0);
-
-
-	
 }
 
 void	ft_getcomands(t_chec *chec)

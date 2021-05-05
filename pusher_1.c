@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/05 01:36:15 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/05 10:21:17 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,14 @@ void	ft_midsort(t_chec *chec)
 		chec->blo++;
 	while (chec->totnum > 3 && chec->blo > 0 && x < 3)
 	{
+		if (chec->staint[0][0] < chec->staint[1][chec->totnumb - 1]
+			&& chec->staint[0][0] > chec->staint[1][chec->totnumb - 2])
+		{
+			ft_rotrevstack_b(chec);
+			ft_pushstack_b(chec);
+			ft_rotatestack_b(chec);
+			ft_rotatestack_b(chec);
+		}
 		ft_pushstack_b(chec);
 		chec->instru = ft_strjoin(chec->instru, "pb\n");
 		x++;
@@ -371,13 +379,13 @@ int	ft_mid_stab_order_b(t_chec *chec, int x)
 	// }
 	if (x > 1 && x <= 3)
 	{
-		if (chec->staint[1][0] < chec->staint[1][1]
+		if ((x <= 3 || x <= 2) && chec->staint[1][0] < chec->staint[1][1]
 		&& chec->staint[1][0] > chec->staint[1][2])
 		{
 			ft_swapstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "sb\n");
 		}
-		if (chec->staint[1][0] < chec->staint[1][1]
+		if (x <= 3 && chec->staint[1][0] < chec->staint[1][1]
 			&& chec->staint[1][0] < chec->staint[1][2]
 			&& chec->staint[1][0] > chec->staint[1][3])
 		{
@@ -407,14 +415,6 @@ int	ft_mid_stab_order_b(t_chec *chec, int x)
 		ft_pushstack_b(chec);
 		chec->instru = ft_strjoin(chec->instru, "pb\n");
 		x++;
-	}
-	if (chec->staint[0][0] < chec->staint[1][chec->totnumb - 1]
-		&& chec->staint[0][0] > chec->staint[1][chec->totnumb - 2])
-	{
-		ft_rotrevstack_b(chec);
-		ft_pushstack_b(chec);
-		ft_rotatestack_b(chec);
-		ft_rotatestack_b(chec);
 	}
 	while (chec->staint[0][0] < chec->staint[1][chec->totnumb - 1])
 	{
