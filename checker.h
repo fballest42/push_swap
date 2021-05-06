@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/04 23:26:19 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/06 12:46:21 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,15 @@ typedef struct s_chec
 	int			minpos;
 	int			maxpos;
 	int			minposb;
+	int			maxposb;
+	int			minnumb;
+	int			maxnumb;
 	int			rra;
 	int			ra;
+	int			pos2a;
+	int			pos2b;
+	int			pos3a;
+	int			pos3b;
 }				t_chec;
 
 /*
@@ -142,5 +149,6 @@ void	ft_few_stab_order_b(t_chec *chec);
 void	ft_few_stab_back_a(t_chec *chec);
 void	ft_checpositions(t_chec *chec);
 void	ft_checpositions_b(t_chec *chec);
+void	ft_checpositions_2(t_chec *chec);
 
 #endif

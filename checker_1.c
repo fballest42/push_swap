@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/05 10:28:49 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:53:11 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ft_getcomands(t_chec *chec)
 		if (line[0] == '\00')
 		{
 			ft_checkorder(chec);
+			free(line);
 			exit (-2);
 		}
 		ft_checkinst(chec, line);

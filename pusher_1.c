@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/06 11:12:37 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/06 12:45:54 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_insert_sta_a(t_chec *chec)
 	{
 		ft_checminpos(chec);
 		ft_checpositions(chec);
+		ft_checpositions_2(chec);
 		if (chec->posa <= chec->posb)
 		{
 			while (chec->posa > 0)
@@ -95,28 +96,12 @@ void	ft_insert_sta_b(t_chec *chec)
 			chec->instru = ft_strjoin(chec->instru, "rb\nrb\npb\nsb\nrrb\nrrb\n");
 			x++;
 		}
-		// if (chec->staint[0][0] < chec->staint[1][0]
-		// 	&& chec->staint[0][0] < chec->staint[1][1]
-		// 	&& chec->staint[0][0] < chec->staint[1][2]
-		// 	&& (chec->totnum / 6) != chec->blo)
-		// {
-		// 	ft_rotatestack_b(chec);
-		// 	ft_rotatestack_b(chec);
-		// 	ft_pushstack_b(chec);
-		// 	ft_swapstack_b(chec);
-		// 	ft_rotrevstack_b(chec);
-		// 	ft_rotrevstack_b(chec);
-		// 	chec->instru = ft_strjoin(chec->instru, "rb\nrb\npb\nsb\nrrb\nrrb\n");
-		// 	x++;
-		// }
 	}
 }
 
 void	ft_order_stack_a(t_chec *chec)
 {
 	ft_checminpos(chec);
-	// if (chec->minpos == 0)
-	// 	ft_printnumbers(chec);
 	if (chec->minpos <= chec->totnum / 2 && chec->minpos != 0)
 	{
 		while (chec->minpos > 0)
@@ -475,21 +460,21 @@ void	ft_checminpos_b(t_chec *chec)
 	int		j;
 
 	j = 0;
-	chec->minnum = chec->staint[1][0];
-	chec->maxnum = chec->staint[1][0];
-	chec->minpos = 0;
-	chec->maxpos = 0;
+	chec->minnumb = chec->staint[1][0];
+	chec->maxnumb = chec->staint[1][0];
+	chec->minposb = 0;
+	chec->maxposb = 0;
 	while (j++ < chec->totnumb)
 	{
-		if (chec->minnum > chec->staint[1][j - 1])
+		if (chec->minnumb > chec->staint[1][j - 1])
 		{
-			chec->minnum = chec->staint[1][j - 1];
-			chec->minpos = j - 1;
+			chec->minnumb = chec->staint[1][j - 1];
+			chec->minposb = j - 1;
 		}
-		else if (chec->maxnum < chec->staint[1][j - 1])
+		else if (chec->maxnumb < chec->staint[1][j - 1])
 		{
-			chec->maxnum = chec->staint[1][j - 1];
-			chec->maxpos = j - 1;
+			chec->maxnumb = chec->staint[1][j - 1];
+			chec->maxposb = j - 1;
 		}
 	}
 	chec->minposb = (chec->totnum - 1) - chec->minnum;
