@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/06 13:53:11 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/06 13:59:56 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		ft_countlines(char **str)
+int	ft_countlines(char **str)
 {
 	int		x;
 

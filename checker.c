@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/05 10:31:50 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/06 14:00:07 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-int		main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_chec		*chec;
 	char		**num;
