@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/06 12:41:10 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/11 11:48:53 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,19 +96,19 @@ void	ft_checpositions_2(t_chec *chec)
 	y = 0;
 	chec->pos2a = 0;
 	chec->pos2b = 0;
-	ft_checminpos_b(chec);
-	if (chec->staint[0][0] < chec->minnumb)
-		chec->pos2a = chec->minposb;
-	else if (chec->staint[0][0] > chec->maxnumb)
-		chec->pos2a = chec->maxposb + 1;
+	ft_checminpos(chec);
+	if (chec->staint[1][chec->totnumb - 1] < chec->minnum)
+		chec->pos2a = chec->minpos;
+	else if (chec->staint[1][chec->totnumb - 1] > chec->maxnum)
+		chec->pos2a = chec->maxpos + 1;
 	else
 	{
 		while (y < chec->totnum - 1)
 		{
-			if ((chec->staint[1][1] > chec->staint[0][y]
-				&& chec->staint[1][1] < chec->staint[0][y + 1])
-				|| (chec->staint[1][1] < chec->staint[0][y]
-				&& chec->staint[1][1] > chec->staint[0][y + 1]))
+			if ((chec->staint[1][chec->totnumb - 1] > chec->staint[0][y]
+				&& chec->staint[1][chec->totnumb - 1] < chec->staint[0][y + 1])
+				|| (chec->staint[1][chec->totnumb - 1] < chec->staint[0][y]
+				&& chec->staint[1][chec->totnumb - 1] > chec->staint[0][y + 1]))
 				chec->pos2a = y + 1;
 			y++;
 		}

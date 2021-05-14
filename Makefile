@@ -6,7 +6,7 @@
 #    By: fballest <fballest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 12:11:55 by fballest          #+#    #+#              #
-#    Updated: 2021/05/06 11:33:42 by fballest         ###   ########.fr        #
+#    Updated: 2021/05/13 10:01:22 by fballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ NAME2 = push_swap
 
 # SOURCES #
 SRC = checker checker_1 checker_2 checker_3 checker_4 checker_5
-SRC2 = pusher pusher_1 pusher_2 pusher_3 checker_1 checker_2 checker_3 \
-		checker_4 checker_5
+SRC2 = pusher pusher_1 pusher_2 pusher_3 pusher_4 pusher_5 pusher_6\
+		 checker_1 checker_2 checker_3 checker_4 checker_5
 
 SRCCHE = $(addsuffix .c, $(SRC))
 SRCPSW = $(addsuffix .c, $(SRC2))
