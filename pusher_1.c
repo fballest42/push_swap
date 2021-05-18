@@ -6,11 +6,304 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 11:08:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/05/14 12:41:27 by fballest         ###   ########.fr       */
+/*   Updated: 2021/05/14 19:12:52 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+
+void	ft_previus_move_1st_to_b(t_chec *chec)
+{
+	if (chec->totnumb > 0 && chec->staint[0][0] > chec->staint[1][0])
+	{
+		ft_pushstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "pb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][0] < chec->staint[1][0]
+		&& chec->staint[0][0] > chec->staint[1][1])
+	{
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "pb\nsb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][0] < chec->staint[1][chec->totnumb - 1])
+	{
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "pb\nrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][0] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][0] < chec->staint[1][chec->totnumb - 2])
+	{
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrb\npb\nrb\nrb\n");
+	}
+	if (chec->totnumb > 3 && chec->staint[0][0] < chec->staint[1][0]
+		&& chec->staint[0][0] < chec->staint[1][1]
+		&& chec->staint[0][0] > chec->staint[1][2])
+	{
+		ft_rotatestack_b(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotrevstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rb\npb\nsb\nrrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][0] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][0] > chec->staint[1][chec->totnumb - 2]
+		&& chec->staint[0][0] < chec->staint[1][chec->totnumb - 3])
+	{
+		ft_rotrevstack_b(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrb\nrrb\npb\nrb\nrb\n");
+	}	
+}
+
+void	ft_previus_move_2nd_to_b(t_chec *chec)
+{
+	if (chec->totnumb > 0 && chec->staint[0][1] > chec->staint[1][0])
+	{
+		ft_swapstack_a(chec);
+		ft_pushstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\npb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][1] < chec->staint[1][0]
+		&& chec->staint[0][1] > chec->staint[1][1])
+	{
+		ft_swapstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\npb\nsb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][1] < chec->staint[1][chec->totnumb - 1])
+	{
+		ft_swapstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\npb\nrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][1] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][1] < chec->staint[1][chec->totnumb - 2])
+	{
+		ft_swapstack_a(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\nrrb\npb\nrb\nrb\n");
+	}
+	if (chec->totnumb > 3 && chec->staint[0][1] < chec->staint[1][0]
+		&& chec->staint[0][1] < chec->staint[1][1]
+		&& chec->staint[0][1] > chec->staint[1][2])
+	{
+		ft_rotatestack_ab(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotrevstack_ab(chec);
+		chec->instru = ft_strjoin(chec->instru, "rr\npb\nsb\nrrr\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][1] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][1] > chec->staint[1][chec->totnumb - 2]
+		&& chec->staint[0][1] < chec->staint[1][chec->totnumb - 3])
+	{
+		ft_swapstack_a(chec);
+		ft_rotrevstack_b(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\nrrb\nrrb\npb\nrb\nrb\nrb\n");
+	}	
+}
+
+void	ft_previus_move_3th_to_b(t_chec *chec)
+{
+	if (chec->totnumb > 0 && chec->staint[0][2] > chec->staint[1][0])
+	{
+		ft_swapstack_a(chec);
+		ft_pushstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\npb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][2] < chec->staint[1][0]
+		&& chec->staint[0][2] > chec->staint[1][1])
+	{
+		ft_swapstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\npb\nsb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][2] < chec->staint[1][chec->totnumb - 1])
+	{
+		ft_swapstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\npb\nrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][2] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][2] < chec->staint[1][chec->totnumb - 2])
+	{
+		ft_swapstack_a(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\nrrb\npb\nrb\nrb\n");
+	}
+	if (chec->totnumb > 3 && chec->staint[0][2] < chec->staint[1][0]
+		&& chec->staint[0][2] < chec->staint[1][1]
+		&& chec->staint[0][2] > chec->staint[1][2])
+	{
+		ft_rotatestack_ab(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotrevstack_ab(chec);
+		chec->instru = ft_strjoin(chec->instru, "rr\npb\nsb\nrrr\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][2] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][2] > chec->staint[1][chec->totnumb - 2]
+		&& chec->staint[0][2] < chec->staint[1][chec->totnumb - 3])
+	{
+		ft_swapstack_a(chec);
+		ft_rotrevstack_b(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "sa\nrrb\nrrb\npb\nrb\nrb\nrb\n");
+	}	
+}
+
+void	ft_previus_move_last_to_b(t_chec *chec)
+{
+	if (chec->totnumb > 0 && chec->staint[0][chec->totnum - 1] > chec->staint[1][0])
+	{
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\npb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][chec->totnum - 1] < chec->staint[1][0]
+		&& chec->staint[0][chec->totnum - 1] > chec->staint[1][1])
+	{
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\npb\nsb\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][chec->totnum - 1] < chec->staint[1][chec->totnumb - 1])
+	{
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\npb\nrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][chec->totnum - 1] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][chec->totnum - 1] < chec->staint[1][chec->totnumb - 2])
+	{
+		ft_rotrevstack_ab(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrr\npb\nrb\nrb\n");
+	}
+	if (chec->totnumb > 3 && chec->staint[0][chec->totnum - 1] < chec->staint[1][0]
+		&& chec->staint[0][chec->totnum - 1] < chec->staint[1][1]
+		&& chec->staint[0][chec->totnum - 1] > chec->staint[1][2])
+	{
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotrevstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\npb\nsb\nrb\nsb\nrrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][chec->totnum - 1] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][chec->totnum - 1] > chec->staint[1][chec->totnumb - 2]
+		&& chec->staint[0][chec->totnum - 1] < chec->staint[1][chec->totnumb - 3])
+	{
+		ft_rotrevstack_ab(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrr\nrrb\npb\nrb\nrb\nrb\n");
+	}	
+}
+
+void	ft_previus_move_2ndlast_to_b(t_chec *chec)
+{
+	if (chec->totnumb > 0 && chec->staint[0][chec->totnum - 2] > chec->staint[1][0])
+	{
+		ft_rotrevstack_a(chec);
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\nrra\npb\nra\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][chec->totnum - 2] < chec->staint[1][0]
+		&& chec->staint[0][chec->totnum - 2] > chec->staint[1][1])
+	{
+		ft_rotrevstack_a(chec);
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotatestack_a(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\nrra\npb\nsb\nra\n");
+	}
+	if (chec->totnumb > 0 && chec->staint[0][chec->totnum - 2] < chec->staint[1][chec->totnumb - 1])
+	{
+		ft_rotrevstack_a(chec);
+		ft_rotrevstack_a(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_ab(chec);
+		chec->instru = ft_strjoin(chec->instru, "rra\nrra\npb\nrr\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][chec->totnum - 2] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][chec->totnum - 2] < chec->staint[1][chec->totnumb - 2])
+	{
+		ft_rotrevstack_ab(chec);
+		ft_rotrevstack_b(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_ab(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrr\nrrb\npb\nrr\nrb\n");
+	}
+	if (chec->totnumb > 3 && chec->staint[0][chec->totnum - 2] < chec->staint[1][0]
+		&& chec->staint[0][chec->totnum - 2] < chec->staint[1][1]
+		&& chec->staint[0][chec->totnum - 2] > chec->staint[1][2])
+	{
+		ft_rotrevstack_ab(chec);
+		ft_rotrevstack_ab(chec);
+		ft_pushstack_b(chec);
+		ft_swapstack_b(chec);
+		ft_rotatestack_ab(chec);
+		ft_swapstack_b(chec);
+		ft_rotrevstack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrr\nrrr\npb\nsb\nrr\nsb\nrrb\n");
+	}
+	if (chec->totnumb > 2 && chec->staint[0][chec->totnum - 2] > chec->staint[1][chec->totnumb - 1]
+		&& chec->staint[0][chec->totnum - 2] > chec->staint[1][chec->totnumb - 2]
+		&& chec->staint[0][chec->totnum - 2] < chec->staint[1][chec->totnumb - 3])
+	{
+		ft_rotrevstack_ab(chec);
+		ft_rotrevstack_ab(chec);
+		ft_pushstack_b(chec);
+		ft_rotatestack_ab(chec);
+		ft_rotatestack_b(chec);
+		ft_rotatestack_b(chec);
+		chec->instru = ft_strjoin(chec->instru, "rrr\nrrr\npb\nrr\nrb\nrb\n");
+	}	
+}
+
+
 
 void	ft_midsort(t_chec *chec)
 {
@@ -22,34 +315,8 @@ void	ft_midsort(t_chec *chec)
 		chec->blo++;
 	while (chec->totnum > 3 && x < 3)
 	{
-		if (chec->staint[0][0] > chec->staint[1][0] && chec->totnumb != 0)
-		{
-			ft_pushstack_b(chec);
-			chec->instru = ft_strjoin(chec->instru, "pb\n");
-		}
-		if (chec->staint[0][0] < chec->staint[1][0]
-			&& chec->staint[0][0] > chec->staint[1][1] && chec->totnumb != 0)
-		{
-			ft_pushstack_b(chec);
-			ft_swapstack_b(chec);
-			chec->instru = ft_strjoin(chec->instru, "pb\nsb\n");
-		}
-		if (chec->staint[0][0] < chec->staint[1][chec->totnumb - 1] && chec->totnumb != 0)
-		{
-			ft_pushstack_b(chec);
-			ft_rotatestack_b(chec);
-			chec->instru = ft_strjoin(chec->instru, "pb\nrb\n");
-		}
-		if (chec->staint[0][0] > chec->staint[1][chec->totnumb - 1]
-			&& chec->staint[0][0] < chec->staint[1][chec->totnumb - 2] && chec->totnumb != 0)
-		{
-			ft_rotrevstack_b(chec);
-			ft_pushstack_b(chec);
-			ft_rotatestack_b(chec);
-			ft_rotatestack_b(chec);
-			chec->instru = ft_strjoin(chec->instru, "rrb\npb\nrb\nrb\n");
-		}
-		if (chec->totnum > 3)
+		ft_previus_move_b(chec);
+				if (chec->totnum > 3)
 		{
 			ft_pushstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "pb\n");
