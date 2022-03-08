@@ -6,7 +6,7 @@
 #    By: fballest <fballest@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/07/21 12:11:55 by fballest          #+#    #+#              #
-#    Updated: 2021/05/13 10:01:22 by fballest         ###   ########.fr        #
+#    Updated: 2022/03/08 23:28:48 by fballest         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,24 +15,19 @@
 
 
 # FILES NAMES #
-NAME = checker
-NAME2 = push_swap
+NAME = push_swap
 
 # SOURCES #
-SRC = checker checker_1 checker_2 checker_3 checker_4 checker_5
-SRC2 = pusher pusher_1 pusher_2 pusher_3 pusher_4 pusher_5 pusher_6\
-		 checker_1 checker_2 checker_3 checker_4 checker_5
+SRC = push_swap parser parser_2 parser_3 utils utils_2 moves_std moves_std2 \
+		moves_std3 solve mem_utils get_position medium_100
 
 SRCCHE = $(addsuffix .c, $(SRC))
-SRCPSW = $(addsuffix .c, $(SRC2))
 OBJS = $(SRCCHE:.c=.o)
-OBJS2 = $(SRCPSW:.c=.o)
-
 
 LIBFT = libft/libft.a
 
 # COMPILER #
-CC = cc -Wall -Wextra -Werror -g #3 -fsanitize=address -O0
+CC = gcc -Wall -Wextra -Werror -g #3 -fsanitize=address -O0
 
 # COLOUR DEFINITION #
 BLUE = \033[0;34m
@@ -44,33 +39,26 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(OBJS2)
+$(NAME): $(OBJS)
 	@echo "$(BLUE)==========CREATING LIBFT==========$(RESET)"
 	@cd libft && make
-	@echo "$(BLUE)==========CREATING CHECKER==========$(RESET)"
-	@$(CC) ${OBJS} $(LIBFT) -o ${NAME}
-	@echo "Done checker file"
 	@echo "$(BLUE)==========CREATING PUSH_SWAP==========$(RESET)"
-	@$(CC) ${OBJS2} $(LIBFT) -o ${NAME2}
+	@$(CC) ${OBJS} $(LIBFT) -o ${NAME}
 	@echo "Done push_swap file"
 	@echo "$(GREEN)==========WELLDONE==========$(RESET)"
-	@echo "Success creating checker and push_swap files"
+	@echo "Success creating push_swap file"
 
 clean:
 	@$(RM) $(OBJS)
-	@$(RM) $(OBJS2)
 	@$(RM) ${NAME}
-	@$(RM) ${NAME2}
 	@echo "$(GREEN)==========REMOVED==========$(RESET)"
-	@echo "Success normal cleaning of checker"
+	@echo "Success normal cleaning of push_swap"
 
 fclean: clean
 	@$(RM) $(OBJS)
-	@$(RM) $(OBJS2)
 	@make -C libft/ fclean
 	@$(RM) ${LIBFT}
 	@$(RM) ${NAME}
-	@$(RM) ${NAME2}
 	@echo "$(GREEN)==========TOTALLY REMOVED==========$(RESET)"
 	@echo "Success deepest cleaning"
 
