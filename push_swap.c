@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 15:23:05 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:18:18 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,25 +92,22 @@ char	**splitter(char **argv)
 	{
 		if (check_space(argv[i]))
 			sp = ft_split(argv[i], ' ');
-		else
+		if (arg)
 		{
-			if (arg)
+			if (sp)
+				arg = ft_matrixrealloc(arg, sp);
+			else
+				arg = ft_matrixrealloc(arg, &argv[i]);
+		}
+		else if (!arg)
+		{
+			if (sp)
 			{
-				if (sp)
-					arg = ft_matrixrealloc(arg, sp);
-				else
-					arg = ft_matrixrealloc(arg, &argv[i]);
+				arg = ft_matrixdup(sp);
+				ft_freematrix(sp);
 			}
-			else if (!arg)
-			{
-				if (sp)
-				{
-					arg = ft_matrixdup(sp);
-					ft_freematrix(sp);
-				}
-				else
-					arg = ft_matrixdup(&argv[i]);
-			}
+			else
+				arg = ft_matrixdup(&argv[i]);
 		}
 		i++;
 	}
