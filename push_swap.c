@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:14:39 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/09 15:23:05 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,32 +65,77 @@ int	is_sort(t_stack *stack)
 	return (0);
 }
 
-void	print_stack(int *stack, int len)
+int		check_space(char *str)
 {
-	int	i;
+	int		i;
 
 	i = 0;
-	while (i < len)
+	while (str[i])
 	{
-		ft_putnbr_fd(stack[i], 1);
-		write(1, " ", 1);
+		if (str[i] == ' ')
+			return (1);
 		i++;
 	}
-	write(1, "\n", 1);
+	return (0);
+}
+
+char	**splitter(char **argv)
+{
+	int		i;
+	char	**sp;
+	char	**arg;
+
+	i = 1;
+	sp = NULL;
+	arg = NULL;
+	while (argv[i])
+	{
+		if (check_space(argv[i]))
+			sp = ft_split(argv[i], ' ');
+		else
+		{
+			if (arg)
+			{
+				if (sp)
+					arg = ft_matrixrealloc(arg, sp);
+				else
+					arg = ft_matrixrealloc(arg, &argv[i]);
+			}
+			else if (!arg)
+			{
+				if (sp)
+				{
+					arg = ft_matrixdup(sp);
+					ft_freematrix(sp);
+				}
+				else
+					arg = ft_matrixdup(&argv[i]);
+			}
+		}
+		i++;
+	}
+	if (!arg && !sp)
+		arg = ft_matrixdup(argv);
+	printf("AQUI %s\n", arg[7]);
+	return (arg);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	stack;
+	char	**spl;
 
 	stack.oper = NULL;
 	stack.a = NULL;
 	stack.b = NULL;
 	stack.chunk = NULL;
+	spl = NULL;
 	if (argc == 1)
 		return (0);
-	if (argc < 2 || check_num(argv) || \
-		check_len(argv) || init_stack(&stack, argc - 1, argv + 1))
+	if (argc >= 2)
+		spl = splitter(argv);
+	if (check_num(spl) || check_len(spl)
+		|| init_stack(&stack, spl))
 		exit_main(&stack, 1);
 	if (execution(&stack))
 		exit_main(&stack, 1);

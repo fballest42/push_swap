@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 11:10:48 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:22:21 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/09 13:03:01 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,11 @@ int	init_a(int *stack, char **operation, int len)
 	return (0);
 }
 
-int	init_stack(t_stack *stack, int nb, char **operation)
+int	init_stack(t_stack *stack, char **operation)
 {
+	int		nb;
+
+	nb = ft_matrixlen(operation);
 	stack->chunk = NULL;
 	stack->a = (int *)malloc(sizeof(int) * (nb + 1));
 	if (!stack->a)

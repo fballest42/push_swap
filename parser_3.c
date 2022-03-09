@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:22:28 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/09 12:39:20 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,12 @@ int	check_len(char **argv)
 	int	sign;
 	int	len;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		len = ft_strlen(argv[i]);
 		sign = get_sign(argv[i]);
-		if (len > 11 || \
-			(len == 11 && !sign))
+		if (len > 11 || (len == 11 && !sign))
 			return (1);
 		if (len >= 10 && parse_num(argv[i], sign))
 			return (1);
