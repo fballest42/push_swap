@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 15:18:18 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 11:06:49 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,32 +88,18 @@ char	**splitter(char **argv)
 	i = 1;
 	sp = NULL;
 	arg = NULL;
+	arg = ft_calloc(sizeof(char *), 1);
 	while (argv[i])
 	{
 		if (check_space(argv[i]))
+		{
 			sp = ft_split(argv[i], ' ');
-		if (arg)
-		{
-			if (sp)
-				arg = ft_matrixrealloc(arg, sp);
-			else
-				arg = ft_matrixrealloc(arg, &argv[i]);
+			arg = ft_matrixrealloc(arg, sp, 1);
 		}
-		else if (!arg)
-		{
-			if (sp)
-			{
-				arg = ft_matrixdup(sp);
-				ft_freematrix(sp);
-			}
-			else
-				arg = ft_matrixdup(&argv[i]);
-		}
+		else
+			arg = ft_matrixrealloc(arg, &argv[i], 2);
 		i++;
 	}
-	if (!arg && !sp)
-		arg = ft_matrixdup(argv);
-	printf("AQUI %s\n", arg[7]);
 	return (arg);
 }
 

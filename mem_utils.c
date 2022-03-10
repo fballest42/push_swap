@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 15:17:49 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 11:08:26 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int	ft_matrixlen(char **arr)
 {
 	int	i;
 
+	i = 0;
 	if (!arr)
 		return (0);
-	i = 0;
-	while (arr[i])
+	while (arr[i] && ft_strlen(arr[i]))
 		i++;
 	return (i);
 }
@@ -81,7 +81,7 @@ char	**ft_matrixdup(char **arr)
 	return (ret);
 }
 
-char	**ft_matrixrealloc(char **s1, char **s2)
+char	**ft_matrixrealloc(char **s1, char **s2, int orig)
 {
 	int		i;
 	int		j;
@@ -94,18 +94,28 @@ char	**ft_matrixrealloc(char **s1, char **s2)
 	str = (char **)malloc(sizeof(char *) * (x + 1));
 	while (i < x)
 	{
+		printf("AQUI ==\n");
 		if (s1[i] && j == 0)
 		{
 			str[i] = ft_strdup(s1[i]);
 			i++;
 		}
-		else
+		else if (s2 && !check_space(s2[j]))
+		{
 			str[i++] = ft_strdup(s2[j++]);
+			if (orig == 2)
+				break;
+		}
+		else
+			break;
 	}
 	str[i] = NULL;
-	ft_freematrix(s1);
-	if (i > 1)
-		ft_freematrix(s2);
+	if (orig == 1)
+		ft_freematrix(s1);
+	// if (tmp)
+	// 	ft_freematrix(tmp);
+	// if (j > 0)
+	// 	ft_freematrix(s2);
 	return (str);
 }
 
@@ -116,12 +126,12 @@ void	ft_freematrix(char **s)
 	i = 0;
 	if (!s)
 		return ;
-	while (s[i] != NULL)
+	while (s[i])
 	{
-		s[i] = NULL;
 		free(s[i]);
+		s[i] = NULL;
 		i++;
 	}
-	s = NULL;
 	free(s);
+	s = NULL;
 }
