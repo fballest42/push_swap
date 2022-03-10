@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 14:09:19 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/04 11:18:37 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:21:38 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *str)
 	size_t		a;
 
 	a = 0;
+	if (!str)
+		return (0);
 	while (str[a] != '\0')
 	{
 		a++;

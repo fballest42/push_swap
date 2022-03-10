@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/10 11:08:26 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 13:36:02 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,17 @@ char	**ft_matrixrealloc(char **s1, char **s2, int orig)
 	int		x;
 	char	**str;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	x = ft_matrixlen(s1) + ft_matrixlen(s2);
+	while (++i < x)
+		printf (" VALORES x = %d - S1 = %s y S2 = %s\n", x, s1[i], s2[i]);
+	i = 0;
 	str = (char **)malloc(sizeof(char *) * (x + 1));
 	while (i < x)
 	{
-		printf("AQUI ==\n");
-		if (s1[i] && j == 0)
+
+		if (s1[i] != 0 && ft_strlen(s1[i]) && j == 0)
 		{
 			str[i] = ft_strdup(s1[i]);
 			i++;
@@ -110,12 +113,9 @@ char	**ft_matrixrealloc(char **s1, char **s2, int orig)
 			break;
 	}
 	str[i] = NULL;
+	ft_freematrix(s1);
 	if (orig == 1)
-		ft_freematrix(s1);
-	// if (tmp)
-	// 	ft_freematrix(tmp);
-	// if (j > 0)
-	// 	ft_freematrix(s2);
+		ft_freematrix(s2);
 	return (str);
 }
 
