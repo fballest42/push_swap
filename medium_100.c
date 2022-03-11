@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 12:37:56 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:22:25 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:18:02 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	check_ref(int *chunk, int len, int num)
+int	get_references(int *chunk, int len, int num)
 {
 	int	i;
 
@@ -26,19 +26,19 @@ int	check_ref(int *chunk, int len, int num)
 	return (1);
 }
 
-int	get_biggest(int *stack, int *ref, int slen, int rlen)
+int	lookfor_bigger(int *stack, int *ref, int len_s, int len_r)
 {
 	int	i;
 	int	tmp;
 
 	i = 0;
 	tmp = -2147483648;
-	find_it(slen, stack, &tmp, rlen);
-	if (rlen)
+	search_num(len_s, stack, &tmp, len_r);
+	if (len_r)
 	{
-		while (i < slen)
+		while (i < len_s)
 		{
-			if (stack[i] > tmp && check_ref(ref, rlen, stack[i]))
+			if (stack[i] > tmp && get_references(ref, len_r, stack[i]))
 			{
 				tmp = stack[i];
 				i = -1;
@@ -49,7 +49,7 @@ int	get_biggest(int *stack, int *ref, int slen, int rlen)
 	return (tmp);
 }
 
-void	init_chunk(t_stack *stack)
+void	chunk_start(t_data *stack)
 {
 	int			len;
 	static int	rest;
@@ -57,41 +57,41 @@ void	init_chunk(t_stack *stack)
 	static int	bool = 0;
 
 	len = -1;
-	init_op(&rest, &div, &bool, stack);
-	stack->c_len = div;
-	if (div + rest == stack->a_len)
-		stack->c_len += rest;
-	stack->chunk = (int *)malloc(sizeof(int) * (stack->c_len + 1));
+	start_order(&rest, &div, &bool, stack);
+	stack->len_c = div;
+	if (div + rest == stack->len_a)
+		stack->len_c += rest;
+	stack->chunk = (int *)malloc(sizeof(int) * (stack->len_c + 1));
 	if (!stack->chunk)
-		exit_main(stack, 0);
-	while (++len < stack->c_len)
-		stack->chunk[len] = get_biggest(stack->a, stack->chunk, \
-										stack->a_len, len);
+		freeexit(stack, 0);
+	while (++len < stack->len_c)
+		stack->chunk[len] = lookfor_bigger(stack->a, stack->chunk, \
+										stack->len_a, len);
 	return ;
 }
 
-int	hold_first(t_stack *stack)
+int	reserve_first(t_data *stack)
 {
 	int	i;
 
 	i = 0;
-	while (i < stack->a_len)
+	while (i < stack->len_a)
 	{
-		if (!check_ref(stack->chunk, stack->c_len, stack->a[i]))
+		if (!get_references(stack->chunk, stack->len_c, stack->a[i]))
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-int	hold_second(t_stack *stack)
+int	reserve_second(t_data *stack)
 {
 	int	i;
 
-	i = stack->a_len - 1;
+	i = stack->len_a - 1;
 	while (i >= 0)
 	{
-		if (!check_ref(stack->chunk, stack->c_len, stack->a[i]))
+		if (!get_references(stack->chunk, stack->len_c, stack->a[i]))
 			return (i);
 		i--;
 	}

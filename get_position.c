@@ -6,68 +6,68 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:22:19 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:10:38 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	insert_up(t_stack *stack, int pos)
+void	putit_up(t_data *stack, int pos)
 {
-	while (pos++ <= stack->a_len)
-		rev_rotate_a(stack->a, stack->a_len);
-	push_a(stack);
+	while (pos++ <= stack->len_a)
+		rra(stack->a, stack->len_a);
+	pa(stack);
 }
 
-void	insert_down(t_stack *stack, int pos)
+void	putit_down(t_data *stack, int pos)
 {
 	while (pos-- > 1)
-		rotate_a(stack->a, stack->a_len);
-	push_a(stack);
+		ra(stack->a, stack->len_a);
+	pa(stack);
 }
 
-void	insert_switch(t_stack *stack, int pos)
+void	switch_num(t_data *stack, int pos)
 {
 	if (pos == 0)
 	{
-		push_b(stack);
+		pb(stack);
 		return ;
 	}
-	if ((stack->b_len / 2) <= pos)
+	if ((stack->len_b / 2) <= pos)
 	{
-		while (pos++ < stack->b_len)
-			rev_rotate_b(stack->b, stack->b_len);
+		while (pos++ < stack->len_b)
+			rrb(stack->b, stack->len_b);
 	}
 	else
 	{
 		while (pos-- > 0)
-			rotate_b(stack->b, stack->b_len);
+			rb(stack->b, stack->len_b);
 	}
-	push_b(stack);
+	pb(stack);
 }
 
-void	push_up(t_stack *stack, int pos)
+void	up_number(t_data *stack, int pos)
 {
 	int	position;
 
 	while (pos-- > 0)
-		rotate_a(stack->a, stack->a_len);
-	position = get_num_position(stack->b, first_inf(stack->b, stack->b_len, \
-													stack->a[0]), stack->b_len);
+		ra(stack->a, stack->len_a);
+	position = getpos_number(stack->b, check_down(stack->b, stack->len_b, \
+													stack->a[0]), stack->len_b);
 	if (position == -1)
-		position = get_max_pos(stack->b, stack->b_len);
-	insert_switch(stack, position);
+		position = getpos_max(stack->b, stack->len_b);
+	switch_num(stack, position);
 }
 
-void	push_down(t_stack *stack, int pos)
+void	down_number(t_data *stack, int pos)
 {
 	int	position;
 
 	while (pos-- >= 0)
-		rev_rotate_a(stack->a, stack->a_len);
-	position = get_num_position(stack->b, first_inf(stack->b, stack->b_len, \
-								stack->a[0]), stack->b_len);
+		rra(stack->a, stack->len_a);
+	position = getpos_number(stack->b, check_down(stack->b, stack->len_b, \
+								stack->a[0]), stack->len_b);
 	if (position == -1)
-		position = get_max_pos(stack->b, stack->b_len);
-	insert_switch(stack, position);
+		position = getpos_max(stack->b, stack->len_b);
+	switch_num(stack, position);
 }

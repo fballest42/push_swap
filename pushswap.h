@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/10 10:36:32 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:47:30 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,90 +17,93 @@
 # include <unistd.h>
 # include "libft/libft.h" 
 
-typedef struct s_stack
+typedef struct s_data
 {
+	char		**spl;
 	int			*a;
 	int			*b;
+	int			len_a;
+	int			len_b;
+	int			len_c;
 	int			*chunk;
-	int			c_len;
-	int			a_len;
-	int			b_len;
 	char		**oper;
-}				t_stack;
+}				t_data;
 
 /*
 ** PUSH_SWAP.C FILES
 */
-void		end_sort(t_stack *stack);
-void		exit_main(t_stack *stack, int bool);
-int			is_sort(t_stack *stack);
-void		print_stack(int *stack, int len);
+void		last_sorter(t_data *stack);
+void		freeexit(t_data *stack, int bool);
+int			check_order(t_data *stack);
+// void		print_data(int *stack, int len);
 int			main(int argc, char **argv);
 int			check_space(char *str);
-char		**splitter(char **argv);
+char		**get_list(char **argv, int argc, t_data *stack);
+char		**number_tolist(char **argv, t_data *stack);
+char		**num_counter(char **argv, t_data *stack);
 
 /*
 ** PARSER.C FILES
 */
-int			check_num(char **arg);
-int			check_args(char **tab);
-void		free_tab(char **tab);
+int			number_check(char **arg);
+// int			argv_check(char **tab);
+void		freematrix(char **tab);
 
 /*
 ** PARSER_2.C FILES
 */
-int			parse_duplicate(int *stack, int len);
+int			check_duplicate(int *stack, int len);
 int			ft_isnum(int ch);
 int			check_atoi(const char *str, int *bool);
-int			init_a(int *stack, char **operation, int len);
-int			init_stack(t_stack *stack, char **operation);
+int			stack_a_init(int *stack, char **action, int len);
+int			initial_data(t_data *stack, char **action);
 
 /*
 ** PARSER_3.C FILES
 */
-int			get_sign(char *tab);
-int			parse_num(char *tab, int sign);
-int			check_len(char **argv);
+int			get_simbol(char *tab);
+int			check_number(char *tab, int sign);
+int			size_check(char **argv);
 
 /*
 ** MOVES_STD.C FILES
 */
-void		swap_a(int *stack);
-void		swap_b(int *stack);
-void		ss(t_stack *stack);
-void		push_a(t_stack *stack);
-void		push_b(t_stack *stack);
+void		sa(int *stack);
+void		sb(int *stack);
+void		ss(t_data *stack);
+void		pa(t_data *stack);
+void		pb(t_data *stack);
 
 /*
 ** MOVES_STD2.C FILES
 */
-void		rotate_a(int *stack, int len);
-void		rotate_b(int *stack, int len);
-void		rr(t_stack *stack);
-void		rev_rotate_a(int *stack, int len);
-void		rrr(t_stack *stack);
+void		ra(int *stack, int len);
+void		rb(int *stack, int len);
+void		rr(t_data *stack);
+void		rra(int *stack, int len);
+void		rrr(t_data *stack);
 
 /*
 ** MOVES_STD3.C FILES
 */
-void		rev_rotate_b(int *stack, int len);
-void		ft_swap(int *a, int *b);
-void		end_five_sort(t_stack *stack);
+void		rrb(int *stack, int len);
+void		swapper(int *a, int *b);
+void		sort_last_five(t_data *stack);
 
 /*
 ** UTILS.C FILES
 */
-int			get_max_pos(int *stack, int len);
-int			get_min_pos(int *stack, int len);
-int			get_num_position(int *stack, int num, int len);
-int			first_sup(int *stack, int len, int num);
-int			first_inf(int *stack, int len, int num);
+int			getpos_max(int *stack, int len);
+int			getpos_min(int *stack, int len);
+int			getpos_number(int *stack, int num, int len);
+int			check_up(int *stack, int len, int num);
+int			check_down(int *stack, int len, int num);
 
 /*
 ** UTILS_2.C FILES
 */
-void		find_it(int slen, int *stack, int *tmp, int rlen);
-void		init_op(int *rest, int *div, int *bool, t_stack *stack);
+void		search_num(int len_s, int *stack, int *tmp, int len_r);
+void		start_order(int *rest, int *div, int *bool, t_data *stack);
 
 /*
 ** MEM_UTILS.C FILES
@@ -115,28 +118,28 @@ void		ft_freematrix(char **s);
 /*
 ** GET_POSITION.C FILES
 */
-void		insert_up(t_stack *stack, int pos);
-void		insert_down(t_stack *stack, int pos);
-void		insert_switch(t_stack *stack, int pos);
-void		push_up(t_stack *stack, int pos);
-void		push_down(t_stack *stack, int pos);
+void		putit_up(t_data *stack, int pos);
+void		putit_down(t_data *stack, int pos);
+void		switch_num(t_data *stack, int pos);
+void		up_number(t_data *stack, int pos);
+void		down_number(t_data *stack, int pos);
 
 /*
 ** SOLVE.C FILES
 */
-void		exec_operation(char *operation, t_stack *stack);
-void		three_sort(t_stack *stack);
-void		five_sort(t_stack *stack);
-void		hundred_sort(t_stack *stack);
-int			execution(t_stack *stack);
+void		exec_sorter(char *action, t_data *stack);
+void		sort_three(t_data *stack);
+void		sort_five(t_data *stack);
+void		sort_hundred(t_data *stack);
+int			orderer(t_data *stack);
 
 /*
 ** MEDIUM_100.C FILES
 */
-int			check_ref(int *chunk, int len, int num);
-int			get_biggest(int *stack, int *ref, int slen, int rlen);
-void		init_chunk(t_stack *stack);
-int			hold_first(t_stack *stack);
-int			hold_second(t_stack *stack);
+int			get_references(int *chunk, int len, int num);
+int			lookfor_bigger(int *stack, int *ref, int len_s, int len_r);
+void		chunk_start(t_data *stack);
+int			reserve_first(t_data *stack);
+int			reserve_second(t_data *stack);
 
 #endif

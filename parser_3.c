@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 12:39:20 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:18:46 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	get_sign(char *tab)
+int	get_simbol(char *tab)
 {
 	if (tab[0] == '-')
 		return (1);
@@ -21,7 +21,7 @@ int	get_sign(char *tab)
 	return (0);
 }
 
-int	parse_num(char *tab, int sign)
+int	check_number(char *tab, int sign)
 {
 	int		i;
 	char	*str;
@@ -45,20 +45,20 @@ int	parse_num(char *tab, int sign)
 	return (0);
 }
 
-int	check_len(char **argv)
+int	size_check(char **argv)
 {
 	int	i;
 	int	sign;
 	int	len;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		len = ft_strlen(argv[i]);
-		sign = get_sign(argv[i]);
+		sign = get_simbol(argv[i]);
 		if (len > 11 || (len == 11 && !sign))
 			return (1);
-		if (len >= 10 && parse_num(argv[i], sign))
+		if (len >= 10 && check_number(argv[i], sign))
 			return (1);
 		i++;
 	}

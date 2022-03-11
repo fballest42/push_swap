@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 12:42:12 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:49:36 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	check_num(char **arg)
+int	number_check(char **arg)
 {
 	int	i;
 	int	j;
@@ -33,20 +33,20 @@ int	check_num(char **arg)
 	return (0);
 }
 
-int	check_args(char **tab)
-{
-	int	i;
+// int	argv_check(char **tab)
+// {
+// 	int	i;
 
-	i = 0;
-	while (tab[i])
-	{
-		if (ft_strncmp(tab[i], "pa", 3))
-			return (1);
-	}
-	return (0);
-}
+// 	i = 0;
+// 	while (tab[i])
+// 	{
+// 		if (ft_strncmp(tab[i], "pa", 3))
+// 			return (1);
+// 	}
+// 	return (0);
+// }
 
-void	free_tab(char **tab)
+void	freematrix(char **tab)
 {
 	int	i;
 

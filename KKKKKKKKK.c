@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 10:06:03 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:04:37 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_shortersort(t_chec *chec)
 {
 	if (chec->staint[0][1] < chec->staint[0][0])
 	{
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->commands = ft_strjoin(chec->commands, chec->commands = "sa\n");
 	}
 	else
@@ -60,14 +60,14 @@ void	ft_threesort(t_chec *chec)
 {
 	if (chec->staint[0][0] > chec->staint[0][1] && chec->staint[0][0] < chec->staint[0][2])
 	{
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "sa\n");
 	}
 	if (chec->staint[0][1] > chec->staint[0][0] && chec->staint[0][1] > chec->staint[0][2]
 		&& chec->staint[0][0] < chec->staint[0][2])
 	{
 		ft_rotrevstack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "rra\nsa\n");
 	}
 	if (chec->staint[0][1] > chec->staint[0][0] && chec->staint[0][1] > chec->staint[0][2]
@@ -85,7 +85,7 @@ void	ft_threesort_b(t_chec *chec)
 		&& chec->staint[0][1] > chec->staint[0][2])
 	{
 		ft_rotatestack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "ra\nsa\n");
 	}
 	if (chec->staint[0][0] > chec->staint[0][1] && chec->staint[0][0] > chec->staint[0][2]
@@ -127,7 +127,7 @@ void	ft_few_stab_order_b(t_chec *chec)
 	{
 		if (chec->staint[1][0] < chec->staint[1][1])
 		{
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "sb\n"); 
 		}
 	}
@@ -140,7 +140,7 @@ void	ft_few_stab_order_b(t_chec *chec)
 		}
 		if (chec->staint[1][0] < chec->staint[1][1])
 		{
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "sb\n");
 		}
 	}
@@ -175,7 +175,7 @@ void	ft_insert_sta_b(t_chec *chec)
 	if (chec->staint[0][0]) == 1)
 	{
 		ft_pushstack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
 		ft_insert_sta_a(chec);
 	}
@@ -193,14 +193,14 @@ void	ft_threesort_mid(t_chec *chec)
 {
 	if (chec->staint[0][0] > chec->staint[0][1] && chec->staint[0][0] < chec->staint[0][2])
 	{
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "sa\n");
 	}
 	if (chec->staint[0][1] > chec->staint[0][0] && chec->staint[0][1] > chec->staint[0][2]
 		&& chec->staint[0][0] < chec->staint[0][2])
 	{
 		ft_rotatestack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		ft_rotrevstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "ra\nsa\nrra\n");
 	}
@@ -208,9 +208,9 @@ void	ft_threesort_mid(t_chec *chec)
 		&& chec->staint[0][0] > chec->staint[0][2])
 	{
 		ft_rotatestack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		ft_rotrevstack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "ra\nsa\nrra\nsa\n");
 	}
 	ft_threesort_midb(chec);
@@ -221,18 +221,18 @@ void	ft_threesort_midb(t_chec *chec)
 	if (chec->staint[0][0] > chec->staint[0][1] && chec->staint[0][0] > chec->staint[0][2]
 		&& chec->staint[0][1] > chec->staint[0][2])
 	{
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		ft_rotatestack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		ft_rotrevstack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 	}
 	if (chec->staint[0][0] > chec->staint[0][1] && chec->staint[0][0] > chec->staint[0][2]
 		&& chec->staint[0][1] < chec->staint[0][2])
 	{
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		ft_rotatestack_a(chec);
-		ft_swapstack_a(chec);
+		swapperstack_a(chec);
 		ft_rotrevstack_a(chec);
 		chec->instru = ft_strjoin(chec->instru, "sa\nra\nsa\nrra\nsa\n");
 	}
@@ -316,7 +316,7 @@ void	ft_midsort(t_chec *chec)
 		if (chec->staint[0][0] < chec->staint[1][0] && chec->staint[0][0] > chec->staint[1][1])
 		{
 			ft_pushstack_b(chec);
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "pb\nsb\n");
 			x--;
 		}
@@ -325,7 +325,7 @@ void	ft_midsort(t_chec *chec)
 		{
 			ft_rotatestack_b(chec);
 			ft_pushstack_b(chec);
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			ft_rotrevstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "rb\npb\nsb\nrrb\n");
 			x--;
@@ -336,7 +336,7 @@ void	ft_midsort(t_chec *chec)
 			ft_rotatestack_b(chec);
 			ft_rotatestack_b(chec);
 			ft_pushstack_b(chec);
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			ft_rotrevstack_b(chec);
 			ft_rotrevstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "rb\nrb\npb\nsb\nrrb\nrrb\n");
@@ -351,7 +351,7 @@ void	ft_midsort(t_chec *chec)
 			ft_rotatestack_b(chec);
 			ft_rotatestack_b(chec);
 			ft_pushstack_b(chec);
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			ft_rotrevstack_b(chec);
 			ft_rotrevstack_b(chec);
 			ft_rotrevstack_b(chec);
@@ -368,7 +368,7 @@ void	ft_midsort(t_chec *chec)
 			ft_rotatestack_b(chec);
 			ft_rotatestack_b(chec);
 			ft_pushstack_b(chec);
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			ft_rotrevstack_b(chec);
 			ft_rotrevstack_b(chec);
 			ft_rotrevstack_b(chec);
@@ -425,7 +425,7 @@ void	ft_mid_return_sta_a(t_chec *chec)
 		else if (chec->posa == 1)
 		{
 			ft_pushstack_a(chec);
-			ft_swapstack_a(chec);
+			swapperstack_a(chec);
 			chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
 			y--;
 		}
@@ -447,7 +447,7 @@ void	ft_mid_return_sta_a(t_chec *chec)
 			if (chec->staint[1][0] > chec->staint[0][0] && chec->staint[1][0] < chec->staint[0][1])
 			{
 				ft_pushstack_a(chec);
-				ft_swapstack_a(chec);
+				swapperstack_a(chec);
 				chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
 				y--;
 			}
@@ -488,7 +488,7 @@ void	ft_mid_return_sta_a(t_chec *chec)
 		if (chec->staint[1][0] > chec->staint[0][0] && chec->staint[1][0] < chec->staint[0][1])
 		{
 			ft_pushstack_a(chec);
-			ft_swapstack_a(chec);
+			swapperstack_a(chec);
 			chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
 			y--;
 		}
@@ -527,7 +527,7 @@ void	ft_mid_stab_order_b(t_chec *chec)
 	{
 		if (chec->staint[1][0] < chec->staint[1][1])
 		{
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "sb\n"); 
 		}
 	}
@@ -540,7 +540,7 @@ void	ft_mid_stab_order_b(t_chec *chec)
 		}
 		if (chec->staint[1][0] < chec->staint[1][1] && chec->staint[1][0] > chec->staint[1][2])
 		{
-			ft_swapstack_b(chec);
+			swapperstack_b(chec);
 			chec->instru = ft_strjoin(chec->instru, "sb\n");
 		}
 	}
@@ -599,7 +599,7 @@ void	ft_checminpos(t_chec *chec)
 // {
 // 	if (chec->staint[1][0] < chec->staint[1][1])
 // 	{
-// 		ft_swapstack_b(chec);
+// 		swapperstack_b(chec);
 // 		chec->instru = ft_strjoin(chec->instru, "sa\n");
 // 	}
 // 	if (chec->staint[1][0] < chec->staint[0][0])
@@ -616,7 +616,7 @@ void	ft_checminpos(t_chec *chec)
 // 	if (chec->staint[1][0] > chec->staint[0][0] && chec->staint[1][0] < chec->staint[0][1])
 // 	{
 // 		ft_pushstack_a(chec);
-// 		ft_swapstack_a(chec);
+// 		swapperstack_a(chec);
 // 		chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
 // 	}
 // 	if (chec->staint[1][0] > chec->staint[0][0] && chec->staint[1][0] > chec->staint[0][1])
@@ -636,22 +636,22 @@ void	ft_checminpos(t_chec *chec)
 // 		// }
 // 		// if (chec->staint[1][1] > chec->staint[0][2])
 // 		// {
-// 		// 	ft_swapstack_b(chec);
+// 		// 	swapperstack_b(chec);
 // 		// 	ft_pushstack_a(chec);
 // 		// 	ft_rotatestack_a(chec);
 // 		// 	chec->instru = ft_strjoin(chec->instru, "sb\npa\nra\n");
 // 		// }
 // 		// if (chec->staint[1][1] > chec->staint[0][0] && chec->staint[1][1] < chec->staint[0][1])
 // 		// {
-// 		// 	ft_swapstack_b(chec);
+// 		// 	swapperstack_b(chec);
 // 		// 	ft_pushstack_a(chec);
-// 		// 	ft_swapstack_a(chec);
+// 		// 	swapperstack_a(chec);
 // 		// 	chec->instru = ft_strjoin(chec->instru, "sb\npa\nsa\n");
 // 		// }
 
 // 		// if (chec->staint[1][1] > chec->staint[0][0] && chec->staint[1][1] > chec->staint[0][1])
 // 		// {
-// 		// 	ft_swapstack_b(chec);
+// 		// 	swapperstack_b(chec);
 // 		// 	ft_rotrevstack_a(chec);
 // 		// 	ft_pushstack_a(chec);
 // 		// 	ft_rotatestack_a(chec);
@@ -670,7 +670,7 @@ void	ft_checminpos(t_chec *chec)
 // 	// 	else if (chec->staint[1][0] > chec->staint[0][0] && chec->staint[1][0] < chec->staint[0][1])
 // 	// 	{
 // 	// 		ft_pushstack_a(chec);
-// 	// 		ft_swapstack_a(chec);
+// 	// 		swapperstack_a(chec);
 // 	// 		chec->instru = ft_strjoin(chec->instru, "pa\nsa\n");
 // 	// 	}
 // 	// }

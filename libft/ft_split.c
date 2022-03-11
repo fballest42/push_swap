@@ -6,13 +6,9 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 09:24:09 by fballest          #+#    #+#             */
-/*   Updated: 2021/03/05 13:05:13 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:24:12 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "libft.h"
 

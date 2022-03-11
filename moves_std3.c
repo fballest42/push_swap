@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:02:12 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:13:45 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:05:28 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	rev_rotate_b(int *stack, int len)
+void	rrb(int *stack, int len)
 {
 	int	tmp;
 
@@ -20,13 +20,13 @@ void	rev_rotate_b(int *stack, int len)
 	tmp = stack[len - 1];
 	while (len > 0)
 	{
-		ft_swap(&(stack[len]), &(stack[len - 1]));
+		swapper(&(stack[len]), &(stack[len - 1]));
 		len--;
 	}
 	stack[0] = tmp;
 }
 
-void	ft_swap(int *a, int *b)
+void	swapper(int *a, int *b)
 {
 	int	tmp;
 
@@ -35,17 +35,17 @@ void	ft_swap(int *a, int *b)
 	*b = tmp;
 }
 
-void	end_five_sort(t_stack *stack)
+void	sort_last_five(t_data *stack)
 {
 	int	ref;
 
-	ref = get_max_pos(stack->a, stack->a_len);
-	if (ref <= (stack->a_len / 2))
+	ref = getpos_max(stack->a, stack->len_a);
+	if (ref <= (stack->len_a / 2))
 		while (ref-- >= 0)
-			rotate_a(stack->a, stack->a_len);
+			ra(stack->a, stack->len_a);
 	else
 	{
-		while (ref++ < stack->a_len - 1)
-			rev_rotate_a(stack->a, stack->a_len);
+		while (ref++ < stack->len_a - 1)
+			rra(stack->a, stack->len_a);
 	}
 }

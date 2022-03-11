@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/10 13:36:02 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:18:46 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	**realloc_null(char *new)
 	tmp[0] = ft_strdup(new);
 	tmp[1] = NULL;
 	if (tmp[0] == NULL)
-		free_tab(tmp);
+		freematrix(tmp);
 	return (tmp);
 }
 
@@ -49,7 +49,7 @@ char	**realloc_tab(char **tab, char *new)
 	}
 	tmp[j++] = ft_strdup(new);
 	tmp[j] = NULL;
-	free_tab(tab);
+	freematrix(tab);
 	return (tmp);
 }
 
@@ -60,7 +60,7 @@ int	ft_matrixlen(char **arr)
 	i = 0;
 	if (!arr)
 		return (0);
-	while (arr[i] && ft_strlen(arr[i]))
+	while (arr[i])
 		i++;
 	return (i);
 }
@@ -91,8 +91,6 @@ char	**ft_matrixrealloc(char **s1, char **s2, int orig)
 	i = -1;
 	j = 0;
 	x = ft_matrixlen(s1) + ft_matrixlen(s2);
-	while (++i < x)
-		printf (" VALORES x = %d - S1 = %s y S2 = %s\n", x, s1[i], s2[i]);
 	i = 0;
 	str = (char **)malloc(sizeof(char *) * (x + 1));
 	while (i < x)

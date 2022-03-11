@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 11:10:48 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/09 13:03:01 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:11:58 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	parse_duplicate(int *stack, int len)
+int	check_duplicate(int *stack, int len)
 {
 	int	i;
 	int	j;
@@ -62,7 +62,7 @@ int	check_atoi(const char *str, int *bool)
 	return (nb * neg);
 }
 
-int	init_a(int *stack, char **operation, int len)
+int	stack_a_init(int *stack, char **action, int len)
 {
 	int	i;
 	int	bool;
@@ -71,23 +71,23 @@ int	init_a(int *stack, char **operation, int len)
 	bool = 0;
 	while (i < len)
 	{
-		stack[i] = check_atoi(operation[i], &bool);
+		stack[i] = check_atoi(action[i], &bool);
 		if (bool)
 		{
 			return (1);
 		}
 		i++;
 	}
-	if (parse_duplicate(stack, len))
+	if (check_duplicate(stack, len))
 		return (1);
 	return (0);
 }
 
-int	init_stack(t_stack *stack, char **operation)
+int	initial_data(t_data *stack, char **action)
 {
 	int		nb;
 
-	nb = ft_matrixlen(operation);
+	nb = ft_matrixlen(action);
 	stack->chunk = NULL;
 	stack->a = (int *)malloc(sizeof(int) * (nb + 1));
 	if (!stack->a)
@@ -97,9 +97,9 @@ int	init_stack(t_stack *stack, char **operation)
 		return (1);
 	ft_bzero(stack->a, nb + 1);
 	ft_bzero(stack->b, nb + 1);
-	stack->a_len = nb;
-	if (init_a(stack->a, operation, stack->a_len))
+	stack->len_a = nb;
+	if (stack_a_init(stack->a, action, stack->len_a))
 		return (1);
-	stack->b_len = 0;
+	stack->len_b = 0;
 	return (0);
 }

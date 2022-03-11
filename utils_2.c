@@ -6,20 +6,20 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/13 09:58:00 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:22:26 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:18:02 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	find_it(int slen, int *stack, int *tmp, int rlen)
+void	search_num(int len_s, int *stack, int *tmp, int len_r)
 {
 	int	i;
 
 	i = 0;
-	if (!rlen)
+	if (!len_r)
 	{
-		while (i < slen)
+		while (i < len_s)
 		{
 			if (stack[i] > *tmp)
 			{
@@ -31,16 +31,16 @@ void	find_it(int slen, int *stack, int *tmp, int rlen)
 	}
 }
 
-void	init_op(int *rest, int *div, int *bool, t_stack *stack)
+void	start_order(int *rest, int *div, int *bool, t_data *stack)
 {
 	if (!*bool)
 	{
 		*bool = 1;
-		*rest = stack->a_len % 5;
-		if (stack->a_len >= 500)
-			*rest = stack->a_len % 11;
-		*div = stack->a_len / 5;
-		if (stack->a_len >= 500)
-			*div = stack->a_len / 11;
+		*rest = stack->len_a % 5;
+		if (stack->len_a >= 500)
+			*rest = stack->len_a % 11;
+		*div = stack->len_a / 5;
+		if (stack->len_a >= 500)
+			*div = stack->len_a / 11;
 	}
 }

@@ -6,30 +6,30 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/10 13:30:29 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 00:52:47 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	end_sort(t_stack *stack)
+void	last_sorter(t_data *stack)
 {
 	int	ref;
 
-	ref = get_max_pos(stack->b, stack->b_len);
-	if (ref < (stack->b_len / 2))
+	ref = getpos_max(stack->b, stack->len_b);
+	if (ref < (stack->len_b / 2))
 		while (ref-- >= 1)
-			rotate_b(stack->b, stack->b_len);
+			rb(stack->b, stack->len_b);
 	else
 	{
-		while (ref++ < stack->b_len)
-			rev_rotate_b(stack->b, stack->b_len);
+		while (ref++ < stack->len_b)
+			rrb(stack->b, stack->len_b);
 	}
-	while (stack->b_len)
-		push_a(stack);
+	while (stack->len_b)
+		pa(stack);
 }
 
-void	exit_main(t_stack *stack, int bool)
+void	freeexit(t_data *stack, int bool)
 {
 	if (stack->chunk)
 		free(stack->chunk);
@@ -38,7 +38,9 @@ void	exit_main(t_stack *stack, int bool)
 	if (stack->b)
 		free(stack->b);
 	if (stack->oper)
-		free_tab(stack->oper);
+		freematrix(stack->oper);
+	if (stack->spl)
+		freematrix(stack->spl);
 	if (bool)
 	{
 		ft_putstr_fd("Error\n", 2);
@@ -47,16 +49,16 @@ void	exit_main(t_stack *stack, int bool)
 	exit(0);
 }
 
-int	is_sort(t_stack *stack)
+int	check_order(t_data *stack)
 {
 	int		i;
 	int		prev;
 
 	i = 1;
-	if (stack->b_len != 0)
+	if (stack->len_b != 0)
 		return (1);
 	prev = stack->a[0];
-	while (i < stack->a_len)
+	while (i < stack->len_a)
 	{
 		if (prev > stack->a[i])
 			return (1);
@@ -79,70 +81,88 @@ int		check_space(char *str)
 	return (0);
 }
 
-char	**splitter(char **argv)
+char	**num_counter(char **argv, t_data *stack)
 {
 	int		i;
-	char	**sp;
-	char	**arg;
+	int		cnt;
 
 	i = 1;
-	sp = NULL;
-	arg = NULL;
+	cnt = 0;
 	while (argv[i])
 	{
-		if (check_space(argv[i]))
-		{
-			if (!arg)
-			{
-				printf("====== ALLI");
-				arg = ft_split(argv[i], ' ');
-			}
-			else
-			{
-				printf("ALLI =====");
-				sp = ft_split(argv[i], ' ');
-				arg = ft_matrixrealloc(arg, sp, 1);
-			}
-		}
+		if (!check_space(argv[i]))
+			cnt++;
 		else
 		{
-			if (!arg)
-			{
-				printf("AQUI ====== ");
-				arg = ft_calloc(sizeof(char **), 2);
-				arg[0] = ft_strdup(argv[i]);
-				arg[1] = NULL;
-			}
-			else
-			{
-				printf("====== AQUI");
-				arg = ft_matrixrealloc(arg, &argv[i], 2);
-			}
+			stack->spl = ft_split(argv[i], ' ');
+			cnt = cnt + ft_matrixlen(stack->spl);
+			freematrix(stack->spl);			
 		}
 		i++;
 	}
-	return (arg);
+	stack->spl = (char **)malloc(sizeof(char *) * cnt + 1);
+	return (stack->spl);
+}
+
+char	**number_tolist(char **argv, t_data *stack)
+{
+	int		i;
+	int		j;
+	int		z;
+	char	**tmp2;
+
+	i = 0;
+	while(argv[i + 1])
+	{
+		if (!check_space(argv[i + 1]))
+			stack->spl[i] = ft_strdup(argv[i + 1]);
+		else
+		{
+			j = 0;
+			z = i;
+			tmp2 = ft_split(argv[i + 1], 32);
+			while(tmp2[j])
+				stack->spl[z++] = ft_strdup(tmp2[j++]);
+			freematrix(tmp2);
+		}
+		i++;
+	}
+	stack->spl[i] = 0;
+	return(stack->spl);
+}
+
+char	**get_list(char **argv, int argc, t_data *stack)
+{
+
+	if (argc == 2)
+		stack->spl = ft_split(argv[1], ' ');
+	else
+	{
+		num_counter(argv, stack);
+		number_tolist(argv, stack);
+	}
+	return (stack->spl);
 }
 
 int	main(int argc, char **argv)
 {
-	t_stack	stack;
-	char	**spl;
+	t_data	stack;
 
+	stack.spl = NULL;
 	stack.oper = NULL;
 	stack.a = NULL;
 	stack.b = NULL;
 	stack.chunk = NULL;
-	spl = NULL;
-	if (argc == 1)
-		return (0);
-	if (argc >= 2)
-		spl = splitter(argv);
-	if (check_num(spl) || check_len(spl)
-		|| init_stack(&stack, spl))
-		exit_main(&stack, 1);
-	if (execution(&stack))
-		exit_main(&stack, 1);
-	exit_main(&stack, 0);
+	if (argc > 1 || (argc == 2 && check_space(argv[1])))
+	{
+		get_list(argv, argc, &stack);
+		if (number_check(stack.spl) || size_check(stack.spl)
+			|| initial_data(&stack, stack.spl))
+			freeexit(&stack, 1);
+		if (orderer(&stack))
+			freeexit(&stack, 1);
+		freeexit(&stack, 0);
+	}
+	// system("leaks push_swap");
 	return (0);
 }

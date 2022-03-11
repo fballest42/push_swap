@@ -6,13 +6,13 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:11:18 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:10:50 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:07:13 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	get_max_pos(int *stack, int len)
+int	getpos_max(int *stack, int len)
 {
 	int	max;
 	int	i;
@@ -34,7 +34,7 @@ int	get_max_pos(int *stack, int len)
 	return (i);
 }
 
-int	get_min_pos(int *stack, int len)
+int	getpos_min(int *stack, int len)
 {
 	int	less;
 	int	i;
@@ -56,7 +56,7 @@ int	get_min_pos(int *stack, int len)
 	return (i - 1);
 }
 
-int	get_num_position(int *stack, int num, int len)
+int	getpos_number(int *stack, int num, int len)
 {
 	int	i;
 
@@ -70,13 +70,13 @@ int	get_num_position(int *stack, int num, int len)
 	return (i);
 }
 
-int	first_sup(int *stack, int len, int num)
+int	check_up(int *stack, int len, int num)
 {
 	int	i;
 	int	ref;
 
 	i = 0;
-	ref = stack[get_max_pos(stack, len)];
+	ref = stack[getpos_max(stack, len)];
 	while (i < len)
 	{
 		if (stack[i] > num && stack[i] < ref)
@@ -84,17 +84,17 @@ int	first_sup(int *stack, int len, int num)
 		i++;
 	}
 	if (num > ref)
-		return (stack[get_min_pos(stack, len)]);
+		return (stack[getpos_min(stack, len)]);
 	return (ref);
 }
 
-int	first_inf(int *stack, int len, int num)
+int	check_down(int *stack, int len, int num)
 {
 	int	i;
 	int	ref;
 
 	i = 0;
-	ref = stack[get_min_pos(stack, len)];
+	ref = stack[getpos_min(stack, len)];
 	while (i < len)
 	{
 		if (stack[i] < num && stack[i] >= ref)
@@ -102,6 +102,6 @@ int	first_inf(int *stack, int len, int num)
 		i++;
 	}
 	if (num < ref)
-		ref = stack[get_max_pos(stack, len)];
+		ref = stack[getpos_max(stack, len)];
 	return (ref);
 }

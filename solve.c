@@ -6,132 +6,132 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/08 23:10:49 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/10 22:16:17 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	exec_operation(char *operation, t_stack *stack)
+void	exec_sorter(char *action, t_data *stack)
 {
-	if (!ft_strncmp(operation, "sa", 3))
-		swap_a(stack->a);
-	else if (!ft_strncmp(operation, "sb", 3))
-		swap_b(stack->b);
-	else if (!ft_strncmp(operation, "ss", 3))
+	if (!ft_strncmp(action, "sa", 3))
+		sa(stack->a);
+	else if (!ft_strncmp(action, "sb", 3))
+		sb(stack->b);
+	else if (!ft_strncmp(action, "ss", 3))
 		ss(stack);
-	else if (!ft_strncmp(operation, "pa", 3))
-		push_a(stack);
-	else if (!ft_strncmp(operation, "pb", 3))
-		push_b(stack);
-	else if (!ft_strncmp(operation, "ra", 3))
-		rotate_a(stack->a, stack->a_len);
-	else if (!ft_strncmp(operation, "rb", 3))
-		rotate_b(stack->b, stack->b_len);
-	else if (!ft_strncmp(operation, "rr", 3))
+	else if (!ft_strncmp(action, "pa", 3))
+		pa(stack);
+	else if (!ft_strncmp(action, "pb", 3))
+		pb(stack);
+	else if (!ft_strncmp(action, "ra", 3))
+		ra(stack->a, stack->len_a);
+	else if (!ft_strncmp(action, "rb", 3))
+		rb(stack->b, stack->len_b);
+	else if (!ft_strncmp(action, "rr", 3))
 		rr(stack);
-	else if (!ft_strncmp(operation, "rra", 4))
-		rev_rotate_a(stack->a, stack->a_len);
-	else if (!ft_strncmp(operation, "rrb", 4))
-		rev_rotate_b(stack->b, stack->b_len);
-	else if (!ft_strncmp(operation, "rrr", 4))
+	else if (!ft_strncmp(action, "rra", 4))
+		rra(stack->a, stack->len_a);
+	else if (!ft_strncmp(action, "rrb", 4))
+		rrb(stack->b, stack->len_b);
+	else if (!ft_strncmp(action, "rrr", 4))
 		rrr(stack);
 }
 
-void	three_sort(t_stack *stack)
+void	sort_three(t_data *stack)
 {
-	if (stack->a_len == 2 && stack->a[0] < stack->a[1])
-		swap_a(stack->a);
-	if (stack->a_len == 3)
+	if (stack->len_a == 2 && stack->a[0] < stack->a[1])
+		sa(stack->a);
+	if (stack->len_a == 3)
 	{
 		if (stack->a[0] > stack->a[1] && stack->a[1] < stack->a[2] && \
 			stack->a[2] > stack->a[0])
-			swap_a(stack->a);
+			sa(stack->a);
 		else if (stack->a[0] > stack->a[1] && stack->a[1] > stack->a[2])
 		{
-			swap_a(stack->a);
-			rev_rotate_a(stack->a, stack->a_len);
+			sa(stack->a);
+			rra(stack->a, stack->len_a);
 		}
 		else if (stack->a[0] > stack->a[1] && stack->a[1] < stack->a[2] && \
 			stack->a[2] < stack->a[0])
-			rotate_a(stack->a, stack->a_len);
+			ra(stack->a, stack->len_a);
 		else if (stack->a[0] < stack->a[1] && stack->a[1] > stack->a[2] && \
 			stack->a[2] > stack->a[0])
 		{
-			swap_a(stack->a);
-			rotate_a(stack->a, stack->a_len);
+			sa(stack->a);
+			ra(stack->a, stack->len_a);
 		}
 		else
-			rev_rotate_a(stack->a, stack->a_len);
+			rra(stack->a, stack->len_a);
 	}
 }
 
-void	five_sort(t_stack *stack)
+void	sort_five(t_data *stack)
 {
 	int	pos;
 
-	while (stack->a_len != 3)
-		push_b(stack);
+	while (stack->len_a != 3)
+		pb(stack);
 	if (!(stack->a[0] < stack->a[1] && stack->a[1] < stack->a[2]))
-		three_sort(stack);
-	while (stack->b_len != 0)
+		sort_three(stack);
+	while (stack->len_b != 0)
 	{
-		pos = get_num_position(stack->a, first_sup(stack->a, stack->a_len, \
-								stack->b[0]), stack->a_len);
-		if (pos < (stack->a_len / 2))
-			insert_down(stack, pos + 1);
+		pos = getpos_number(stack->a, check_up(stack->a, stack->len_a, \
+								stack->b[0]), stack->len_a);
+		if (pos < (stack->len_a / 2))
+			putit_down(stack, pos + 1);
 		else
-			insert_up(stack, pos + 1);
+			putit_up(stack, pos + 1);
 	}
-	end_five_sort(stack);
+	sort_last_five(stack);
 }
 
-void	hundred_sort(t_stack *stack)
+void	sort_hundred(t_data *stack)
 {
 	int	hf;
 	int	hs;
 	int	nb;
 
-	while (stack->a_len != 0)
+	while (stack->len_a != 0)
 	{
-		init_chunk(stack);
+		chunk_start(stack);
 		nb = 0;
-		while (nb++ < stack->c_len)
+		while (nb++ < stack->len_c)
 		{
-			hf = hold_first(stack);
-			hs = stack->a_len - 1 - hold_second(stack);
+			hf = reserve_first(stack);
+			hs = stack->len_a - 1 - reserve_second(stack);
 			if (hf <= hs)
 			{
-				push_up(stack, hf);
+				up_number(stack, hf);
 			}
 			else if (hs < hf)
 			{
-				push_down(stack, hs);
+				down_number(stack, hs);
 			}
 		}
 		free(stack->chunk);
 		stack->chunk = NULL;
 	}
-	end_sort(stack);
+	last_sorter(stack);
 }
 
-int	execution(t_stack *stack)
+int	orderer(t_data *stack)
 {
-	if (!is_sort(stack))
+	if (!check_order(stack))
 		return (0);
-	if (stack->a_len == 2)
+	if (stack->len_a == 2)
 	{
 		if (stack->a[0] > stack->a[1])
-			swap_a(stack->a);
+			sa(stack->a);
 	}
-	else if (stack->a_len == 3)
+	else if (stack->len_a == 3)
 	{
 		if (!(stack->a[0] < stack->a[1] && stack->a[1] < stack->a[2]))
-			three_sort(stack);
+			sort_three(stack);
 	}
-	else if (stack->a_len <= 5 && stack->a_len > 3)
-		five_sort(stack);
-	else if (stack->a_len > 5 && stack->a_len > 3)
-		hundred_sort(stack);
+	else if (stack->len_a <= 5 && stack->len_a > 3)
+		sort_five(stack);
+	else if (stack->len_a > 5 && stack->len_a > 3)
+		sort_hundred(stack);
 	return (0);
 }
