@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/25 11:12:33 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/11 00:47:30 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 10:22:58 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,21 @@ typedef struct s_data
 void		last_sorter(t_data *stack);
 void		freeexit(t_data *stack, int bool);
 int			check_order(t_data *stack);
-// void		print_data(int *stack, int len);
-int			main(int argc, char **argv);
 int			check_space(char *str);
-char		**get_list(char **argv, int argc, t_data *stack);
-char		**number_tolist(char **argv, t_data *stack);
-char		**num_counter(char **argv, t_data *stack);
+int			main(int argc, char **argv);
 
 /*
 ** PARSER.C FILES
 */
 int			number_check(char **arg);
-// int			argv_check(char **tab);
-void		freematrix(char **tab);
+char		**num_counter(char **argv, t_data *stack);
+char		**number_tolist(char **argv, t_data *stack);
+char		**get_list(char **argv, int argc, t_data *stack);
 
 /*
 ** PARSER_2.C FILES
 */
 int			check_duplicate(int *stack, int len);
-int			ft_isnum(int ch);
 int			check_atoi(const char *str, int *bool);
 int			stack_a_init(int *stack, char **action, int len);
 int			initial_data(t_data *stack, char **action);
@@ -107,12 +103,12 @@ void		start_order(int *rest, int *div, int *bool, t_data *stack);
 
 /*
 ** MEM_UTILS.C FILES
-** INCLUYE TAMBIEN ESTA FUNCION ESTÁTICA --> static char	**realloc_null(char *new);
+** INCLUYE TAMBIEN ESTA FUNCION ESTÁTICA
+** static char **realloc_null(char *new);
 */
 int			ft_matrixlen(char **arr);
 char		**ft_matrixdup(char **arr);
-char		**ft_matrixrealloc(char **s1, char **s2, int orig);
-char		**realloc_tab(char **tab, char *new);
+char		**ft_matrixrealloc(char **tab, char *new);
 void		ft_freematrix(char **s);
 
 /*

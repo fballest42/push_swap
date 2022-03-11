@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:43:14 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/11 09:02:42 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 10:13:46 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ static char	**realloc_null(char *new)
 	tmp[0] = ft_strdup(new);
 	tmp[1] = NULL;
 	if (tmp[0] == NULL)
-		freematrix(tmp);
+		ft_freematrix(tmp);
 	return (tmp);
 }
 
-char	**realloc_tab(char **tab, char *new)
+char	**ft_matrixrealloc(char **tab, char *new)
 {
 	int		i;
 	int		j;
@@ -49,7 +49,7 @@ char	**realloc_tab(char **tab, char *new)
 	}
 	tmp[j++] = ft_strdup(new);
 	tmp[j] = NULL;
-	freematrix(tab);
+	ft_freematrix(tab);
 	return (tmp);
 }
 
@@ -81,55 +81,13 @@ char	**ft_matrixdup(char **arr)
 	return (ret);
 }
 
-char	**ft_matrixrealloc(char **s1, char **s2, int orig)
-{
-	int		i;
-	int		j;
-	int		x;
-	char	**str;
-
-	i = -1;
-	j = 0;
-	x = ft_matrixlen(s1) + ft_matrixlen(s2);
-	i = 0;
-	str = (char **)malloc(sizeof(char *) * (x + 1));
-	while (i < x)
-	{
-
-		if (s1[i] != 0 && ft_strlen(s1[i]) && j == 0)
-		{
-			str[i] = ft_strdup(s1[i]);
-			i++;
-		}
-		else if (s2 && !check_space(s2[j]))
-		{
-			str[i++] = ft_strdup(s2[j++]);
-			if (orig == 2)
-				break;
-		}
-		else
-			break;
-	}
-	str[i] = NULL;
-	ft_freematrix(s1);
-	if (orig == 1)
-		ft_freematrix(s2);
-	return (str);
-}
-
-void	ft_freematrix(char **s)
+void	ft_freematrix(char **tab)
 {
 	int	i;
 
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-	{
-		free(s[i]);
-		s[i] = NULL;
-		i++;
-	}
-	free(s);
-	s = NULL;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+	tab = NULL;
 }

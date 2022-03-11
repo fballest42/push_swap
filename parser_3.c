@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/29 18:51:25 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/11 00:18:46 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 10:18:06 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	size_check(char **argv)
 	int	sign;
 	int	len;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		len = ft_strlen(argv[i]);

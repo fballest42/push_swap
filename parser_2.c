@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/12 11:10:48 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/10 22:11:58 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 10:16:54 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,6 @@ int	check_duplicate(int *stack, int len)
 	return (0);
 }
 
-int	ft_isnum(int ch)
-{
-	if (ch <= 57 && ch >= 48)
-		return (1);
-	return (0);
-}
-
 int	check_atoi(const char *str, int *bool)
 {
 	int	i;
@@ -55,9 +48,9 @@ int	check_atoi(const char *str, int *bool)
 		neg = -1;
 	if (str[i] == '-' || str[i] == '+')
 		i++;
-	while (ft_isnum(str[i]))
+	while (ft_isdigit(str[i]))
 		nb = nb * 10 + (str[i++] - 48);
-	if (str[i] != '\0' && !ft_isnum(str[i]))
+	if (str[i] != '\0' && !ft_isdigit(str[i]))
 		*bool = 1;
 	return (nb * neg);
 }
