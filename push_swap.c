@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/29 09:14:39 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/11 00:52:47 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 09:30:45 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char	**num_counter(char **argv, t_data *stack)
 		}
 		i++;
 	}
-	stack->spl = (char **)malloc(sizeof(char *) * cnt + 1);
+	stack->spl = (char **)malloc(sizeof(char *) * (cnt + 1));
 	return (stack->spl);
 }
 
@@ -108,26 +108,26 @@ char	**number_tolist(char **argv, t_data *stack)
 {
 	int		i;
 	int		j;
-	int		z;
+	int		k;
 	char	**tmp2;
 
-	i = 0;
-	while(argv[i + 1])
+	i = 1;
+	k = 0;
+	while(argv[i])
 	{
-		if (!check_space(argv[i + 1]))
-			stack->spl[i] = ft_strdup(argv[i + 1]);
+		if (!check_space(argv[i]))
+			stack->spl[k++] = ft_strdup(argv[i++]);
 		else
 		{
 			j = 0;
-			z = i;
-			tmp2 = ft_split(argv[i + 1], 32);
+			tmp2 = ft_split(argv[i++], 32);
 			while(tmp2[j])
-				stack->spl[z++] = ft_strdup(tmp2[j++]);
+				stack->spl[k++] = ft_strdup(tmp2[j++]);
 			freematrix(tmp2);
 		}
-		i++;
 	}
-	stack->spl[i] = 0;
+	printf("AQUI I = %d\n", k);
+	stack->spl[k] = NULL;
 	return(stack->spl);
 }
 

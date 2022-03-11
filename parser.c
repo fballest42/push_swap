@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/11 00:49:36 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 09:26:21 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	number_check(char **arg)
 	i = 0;
 	while (arg[i])
 	{
+		printf("%d\n", i);
 		j = 0;
 		while (arg[i][j])
 		{
