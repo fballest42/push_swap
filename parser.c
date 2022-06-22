@@ -6,7 +6,7 @@
 /*   By: fballest <fballest@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/31 10:49:46 by fballest          #+#    #+#             */
-/*   Updated: 2022/03/11 10:21:19 by fballest         ###   ########.fr       */
+/*   Updated: 2022/03/11 10:48:20 by fballest         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	number_check(char **arg)
 		j = 0;
 		while (arg[i][j])
 		{
-			if (arg[i][0] == '-' || arg[i][0] == '+')
+			if (j == 0 && (arg[i][0] == '-' || arg[i][0] == '+'))
 				j++;
 			if (!ft_isdigit(arg[i][j++]))
 				return (1);
