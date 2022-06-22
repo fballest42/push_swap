@@ -28,7 +28,8 @@
 #### - you want to count the number of moves:
 #### make && ARG="4 67 3 87 23"; ./push_swap $ARG | wc -l
 #### - you want to check is your list of moves sort your list
-#### make && ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
+#### make && ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG *
+##### * You must know that the checker file is provided in the Subject, you have a Mac version and a Linux version. Here you will find the Mac version as "checker" cause is my natural developvment enviromet.
 ### You can use my test to check several set of numbers at the same time. All the modifications accepted in this test are explained in the comments of the file [my_test.sh](my_test.sh). Make any modification that you need and launch:
 #### make && sh my_test.sh
 ### You have available a complex and slower test for push_swap project in the [Tester](Tester/) folder. It include a README to know how to work with it.
